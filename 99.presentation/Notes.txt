@@ -1,0 +1,142 @@
+Cloud SQL
+
+- Fully Managed Database service 
+- Database Infrastructure Management completed owned by google
+- Automated Backups, Replication, Encryption patches and capacity increases
+- Fully integrated with other Google Cloud Platform services
+- Supports easy migration from other sources using DMS
+- Cloud SQL supports below DB engines
+    - MySQL
+    - PostGre SQL
+    - SQL Server
+
+Cloud Spanner
+- Fully managed, mission critical, relational DB service
+- Transactional consistency at global scale
+- Automatic, synchronous replication for high availability
+- Cloud SQL offers vertical scalability where as Cloud Spanner is Horizontally scalable
+- Regional and Multi-Regional configurations
+- Schema changes can be done online without downtime
+- Typical use cases are Gaming, Global financial ledger etc.
+
+Cloud BigTable
+- Fully managed, scalable NOSQL service
+- Used for analytical and operational workloads
+- Ideal for storing very large amounts of in key-value store
+- High read and write throughput at very low latency
+- Additional nodes can be added for increased throughput
+- No downtime for cluster resizing. Can be changed even hourly
+- High availabilty SLA of 99.99% for instances with multi-cluster routing
+- cbt command line tool to work with BigTable. Ex. **cbt createtable my-table**
+
+Memorystore
+- In-memory datastore service 
+- Support two popular engine Redis and Memcached
+- Fully managed (Provisioning, Replication, Failover and Patching all managed)
+- Highly secured using VPCs, IAM integration
+- Highly available with 99.9% availability SLA
+- Monitoring can be easily setup using Cloud Monitoring
+
+Firestore
+- Serverless Document Database
+- Typical use cases are mobile, web and IOT apps
+- These can connect directly to Firestore database
+- Automatic multi-region replication and Strong consistency 99.999% availability
+- Built-in live synchronization and offline mode 
+- Firestore supports wide variety of client side libraries Web, iOS, Android and more
+
+
+IAM
+- Mechanism to provide access to some one to a Cloud Resource
+- The Access management model has 3 parts
+    - Member
+    - Role
+    - Access
+- Access is given to Members. The member types are
+    - Google Account - Represents a person. Email address represents the identity of the user
+    - Service account - Represents application account (Not person)
+    - Google group - Collection of Google Accounts and Service Accounts. Also has unique email address. Convenient way to apply access policy to group
+    - Google Workspace domain - Represents a virtual group of Google accounts created in an Orgnizations Workspace domain.
+    - Cloud Identity domain - Similar to Google Workspace domain but these users do not have access to Workspace applications
+
+- IAM Roles
+- Role represents collection of permissions
+- Permissions can't be directly given to users/identities
+- Basic Roles (Old) - Roles historically available in Google Cloud Console
+- Predefined Roles - Managed by Google. More fine grained. Example roles/pubsub.publisher. Only access to publish message to a Pub/Sub topic
+- Custom Roles - Created by users when Predefined roles not meeting the requirement
+
+IAM policy
+- Roles are assigned to users through IAM Policy documents
+- Represented by a policy object.
+- Policy object has list of bindings
+- A binding, binds a role to list of members
+- Member type is identified by prefix. ex user, serviceaccount, group or domain
+```
+{
+  "bindings": [
+    {
+      "role": "roles/storage.objectAdmin",
+       "members": [
+         "user:ali@example.com",
+         "serviceAccount:my-other-app@appspot.gserviceaccount.com",
+         "group:admins@example.com",
+         "domain:google.com"
+       ]
+    },
+    {
+      "role": "roles/storage.objectViewer",
+      "members": [
+        "user:maria@example.com"
+      ]
+    }
+  ]
+}
+```
+
+Resource Hierarchy
+- Organization > Folders > Projects > Resources
+- Each resource will have exactly one parent
+- IAM Policy can be set at any level of the Hierarchy
+- Resources inherit the policies of **All parents**
+- The effective policy for a resource is the union of the policy on that resource and its parents
+- Policy inheritance is transitive. The organization policies are applied at resource level
+- You can't restrict policy at lower level if permission given at higher level. 
+
+
+BigQuery
+- Storing and querying massive datasets is costly and time consuming
+- Fully managed enterprise data warehouse
+- Enables super fast SQL queries
+- Create custom schemas that organize your data into datasets and tables.
+- Load data from a variety of sources, including streaming data.
+- Use SQL-like commands to query massive datasets very quickly. BigQuery is designed and optimized for speed.
+- Use the web UI, command-line interface, or API.
+- Load, query, export, and copy data by using jobs.
+- Manage data and protect it by using permissions.
+- Can be accessed from
+    - Cloud Console
+    - bq command-line tool
+    - BigQuery Rest API
+    - Variety of client libraries (Java, .NET & Python)
+
+```
+bq show PROJECT_ID:DATASET_ID.TABLE_ID
+bq show bigquery-public-data:samples.shakespeare
+```
+
+Dataflow
+- You want to do real time click stream analysis of users accessing an e-commerce website
+- You want to process text files and load them in to cloud database
+- Enter Dataflow
+- Unified stream and batch processing framework
+- Serverless, fast and cost-effective
+- Fully managed data processing service. All resource provisioning handled by Google
+- Flexible scheduling and pricing for batch processing
+- Based on Apache Beam open source framework
+
+
+
+
+
+

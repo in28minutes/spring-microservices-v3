@@ -1,0 +1,530 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+
+	<title>Microservices - V2 </title>
+
+	<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+	<meta name="author" content="Hakim El Hattab">
+
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<link rel="stylesheet" href="css/reveal.css">
+	<link rel="stylesheet" href="css/theme/white.css" id="theme">
+	<link rel="stylesheet" href="css/reveal-override.css" />
+
+	<!-- Theme used for syntax highlighting of code -->
+	<link rel="stylesheet" href="lib/css/zenburn.css">
+
+	<!-- Printing and PDF exports -->
+	<script>
+		var link = document.createElement('link');
+		link.rel = 'stylesheet';
+		link.type = 'text/css';
+		link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+		document.getElementsByTagName('head')[0].appendChild(link);
+	</script>
+
+	<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+</head>
+
+<body>
+
+	<div class="reveal">
+
+		<!-- Any section element inside of this container is displayed as a slide -->
+		<div class="slides">
+
+
+			<!-- Slides are separated by three dashes (quick 'n dirty regular expression) -->
+			<section data-markdown data-separator="---">
+
+				<script type="text/template">
+
+
+
+<!-- .slide: class="center" -->
+# Microservices
+
+---
+## Microservices - V2
+![](./images/microservices/docker.png)
+<!-- .slide: class="image-right image-fifty one30" -->
+- **V2** - Latest Releases of 
+	- Spring Boot 
+	- Spring Cloud
+	- Docker and 
+	- Kubernetes
+	- ** Skip to Next Section :) ** 
+- **V1** - Old Versions 
+	- Spring Boot v2.3 and LOWER
+	- ** Continue on to next lecture :( **
+
+---
+## Microservices - V2
+![](./images/microservices/docker.png)
+<!-- .slide: class="image-right image-fifty one30" -->
+
+- You have **skipped V1**
+	- Go to next lecture!
+- You have **completed V1**
+	- Option 1: **Start from Zero Again**:
+		- Go to the next lecture!
+	- Option 2: **Get a Quick Start**: 
+		- Jump to **"Step 21 - QuickStart by Importing Microservices"**
+			- Same microservices as V1: **Currency Exchange** and **Currency Conversion**
+			- Very little changes in **Eureka Naming Server**
+			- **Step 21** helps you set these up and get started quickly!
+
+---
+
+## Microservices - V2 - What's New
+![](./images/microservices/docker.png)
+<!-- .slide: class="image-right image-fifty one20" -->
+- Microservices Evolve Quickly
+- **Important Updates**:
+	- Latest Versions of Spring Boot & Spring Cloud
+		- **Spring Cloud LoadBalancer** instead of Ribbon
+		- **Spring Cloud Gateway** instead of Zuul
+		- **Resilience4j** instead of Hystrix 
+	- **Docker**: Containerize Microservices
+		- Run microservices using Docker and Docker Compose
+	- **Kubernetes**: Orchestrate all your Microservices with Kubernetes
+
+---
+<!-- .slide: class="onlydiagram" -->
+![](images/microservices/monolith.png)
+## Monolith
+
+---
+<!-- .slide: class="onlydiagram" -->
+![](images/microservices/microservice-example.png)
+## Microservices
+
+---
+## What is a Microservice?
+
+![](images/microservices/microservice-chain.png)
+
+> Small autonomous services that work together <BR/><BR/><BR/>** Sam Newman**
+
+---
+## What is a Microservice?
+
+<!-- .slide: class="eighty" -->
+
+![](images/microservices/microservice-chain.png)
+
+> Approach to developing a application as a suite of small services, <BR/>each running in its own process and communicating with lightweight mechanisms often an HTTP resource API. <BR/>These services are built around business capabilities and <BR/>independently deployable by fully automated deployment machinery. <BR/>There is a bare minimum of centralized management of these services, which may be written in different programming languages and use different data storage technologies. <BR/><BR/> **James Lewis and Martin Fowler**
+
+Note: In the previous section, we talked about fuzzy world of Restful web services. Things get even more fuzzier with microservices. Definitions vary from ... to .. . These are just a couple of examples from a huge number of microservices definition. I don't want to get into the world of what is microservice and what is not a microservice and how to define it? Let's start with few things that are important for microservices.
+
+---
+## Microservices for me
+<!-- .slide: class="image-right image-sixty one50" -->
+![](images/microservices/microservice-instances.png)
+- REST
+- Small Well Chosen Deployable Units
+- Cloud Enabled
+
+
+Note: What is cloud enabled? Instead of one large monolith, you will be building a set of smaller microservices. I'm showing 5. It can be 10, 15 or 1000. These microservices have well defined boundaries and interact with each other. These are cloud enabled. You will have multiple instances for these microservices. We are looking at the production deployments for a set of microservices. At this moment, .. instances of microservice A.. etc. By cloud enabled, we mean if there is more load on microservice 3, I should be able to bring up a new instance of microservice 3. This should not involve a lot of configuration.
+We already looked at REST web services, in the next sections of the course we will look at how to cloud enable them. How to setup an architecture which is dynamic? 
+In this step, we took 10,000 foot look at microservices of what we think about microservices. Let's go deeper in the next step.
+
+
+---
+## Microservices - Challenges
+<!-- .slide: class="one30" -->
+![](images/microservices/microservice-chain.png)
+- Bounded Context
+- Configuration Management
+- Dynamic Scale Up and Scale Down
+- Visibility
+- Pack of Cards
+- Zero Downtime Deployments
+NOTE: Bounded Context - We will build 1000 microservices. How do I identify the boundary of each of these microservices. How do you decide what I should do and what I should not do? For new apps, this is especially difficult. You do NOT have enough knowledge. Deciding boundaries is an evolutionary process. Its not something that you would get it right the first time. Try and follow Domain Driven Design. Try to identify the right boundaries based on your knowledge at this point in time and be prepared to evolve. Important thing : Put the knowledge you gained back into microservices.
+Configuration Management - 5 or 50 microservices with multiple environments
+Dynamic Scale Up and Scale Down - 	- Establishing the technology, Load vary,  Bring up and Bring Down, All this with Load Balancing
+Visibility- 	- If there is a bug, how do find which microservice has a bug?	- Monitoring (Find microservices which are down, Find servers which have less disk space)
+Pack of Cards	- If they are not well designed, microservice architectures can be like a pack of cards. If a microservice goes down - Fault Tolerance
+
+---
+## Microservice - Solutions
+![](images/microservices/microservice-chain.png)
+- **Spring Cloud** Umbrella Projects
+	- Centralized Configuration Management (Spring Cloud Config Server)
+	- Location Transparency - Naming Server (Eureka)
+	- Load Distribution (Ribbon, Spring Cloud Load Balancer)
+	- Visibility and Monitoring (Zipkin)
+	- API Gateway (Zuul, Spring Cloud Gateway)
+	- Fault Tolerance (Hystrix, Resilience4j)
+- **Docker**: Language Neutral, Cloud Neutral deployable units
+- **Kubernetes**: Orchestrate Thousands of Microservices
+
+---
+## Microservices - 3 Key Advantages
+<!-- .slide: class="one50" -->
+![](images/microservices/microservice-chain.png)
+- New Technology & Process Adoption
+- Dynamic Scaling
+- Faster Release Cycles 
+
+Note: Small Microservices => Easier Changes
+Cloud Enabled and use Cloud
+Standardizing Ports
+
+---
+## Ports Standardization
+
+|Application|Port|
+|--|--|
+| Limits Microservice | 8080, 8081, ... |
+| Spring Cloud Config Server | 8888 |
+| Currency Exchange Microservice | 8000, 8001, 8002, ..  |
+| Currency Conversion Microservice | 8100, 8101, 8102, ... |
+| Netflix Eureka Naming Server | 8761 |
+| API Gateway | 8765 |
+| Zipkin Distributed Tracing Server | 9411 |
+
+---
+## Need for Centralized Configuration
+<!-- .slide: class="image-right image-fifty" -->
+![](images/microservices/microservice-environments.png)
+- Lot of configuration:
+	- External Services
+	- Database
+	- Queue
+	- Typical Application Configuration
+- Configuration variations:
+	- 1000s of Microservices
+	- Multiple Environments
+	- Multiple instances in each Environment
+- How do you manage all this configuration?
+
+---
+<!-- .slide: class="onlydiagram" -->
+![](images/microservices/config-server.png)
+## Config Server
+
+---
+<!-- .slide: class="onlydiagram" -->
+![](images/microservices/microservice-environments.png)
+## Environments
+
+---
+<!-- .slide: class="onlydiagram" -->
+![](images/microservices/currency-conversion-environments.png)
+## Environments
+
+---
+<!-- .slide: class="onlydiagram" -->
+![](images/microservices/currency-exchange-environments.png)
+## Environments
+
+---
+<!-- .slide: class="onlydiagram" -->
+![](images/microservices/microservices-overview.png)
+## Microservices Overview
+
+---
+## Currency Exchange Microservice
+
+
+> What is the exchange rate of one currency in another?
+
+```
+
+http://localhost:8000/currency-exchange/from/USD/to/INR
+
+{
+   "id":10001,
+   "from":"USD",
+   "to":"INR",
+   "conversionMultiple":65.00,
+   "environment":"8000 instance-id"
+}
+
+```
+
+
+
+---
+## Currency Conversion Microservice
+<!-- .slide: class="image-right image-forty" -->
+
+> Convert 10 USD into INR
+
+```
+
+http://localhost:8100/currency-conversion/from/USD/to/INR/quantity/10
+
+{
+  "id": 10001,
+  "from": "USD",
+  "to": "INR",
+  "conversionMultiple": 65.00,
+  "quantity": 10,
+  "totalCalculatedAmount": 650.00,
+  "environment": "8000 instance-id"
+}
+```
+
+![](images/microservices/microservices-overview.png)
+
+---
+<!-- .slide: class="onlydiagram" -->
+![](images/microservices/naming-server.png)
+## Naming Server
+
+---
+<!-- .slide: class="onlydiagram" -->
+![](images/microservices/load-balancing.png)
+## Load Balancing
+
+---
+## Spring Cloud Gateway
+<!-- .slide: class="image-right image-forty" -->
+![](images/microservices/spring-cloud-gateway.png)
+From https://docs.spring.io
+- Simple, yet effective way to route to APIs
+- Provide cross cutting concerns:
+	- Security
+	- Monitoring/metrics
+- Built on top of Spring WebFlux (Reactive Approach)
+- Features:
+	- Match routes on any request attribute
+	- Define Predicates and Filters
+	- Integrates with Spring Cloud Discovery Client (Load Balancing)
+	- Path Rewriting
+
+---
+## Circuit Breaker
+![](images/microservices/microservice-chain.png)
+- What if one of the services is down or is slow?
+	- Impacts entire chain!
+- Questions:
+	- Can we return a fallback response if a service is down?
+	- Can we implement a Circuit Breaker pattern to reduce load?
+	- Can we retry requests in case of temporary failures?
+	- Can we implement rate limiting?
+- Solution: Circuit Breaker Framework - Resilience4j
+
+---
+## Distributed Tracing
+![](images/microservices/microservice-chain.png)
+- Complex call chain
+- How do you debug problems?
+- How do you trace requests across microservices?
+- Enter Distributed Tracing
+
+---
+<!-- .slide: class="onlydiagram" -->
+![](images/microservices/distributed-tracing-direct.png)
+## Distributed Tracing
+
+---
+<!-- .slide: class="onlydiagram" -->
+![](images/microservices/distributed-tracing.png)
+## Distributed Tracing - Asynchronous
+
+---
+## Microservices
+![](./images/microservices/microservice-example.png)
+- Enterprises are heading towards microservices architectures
+	- Build small focused microservices
+	- **Flexibility to innovate** and build applications in different programming languages (Go, Java, Python, JavaScript,  etc)
+	- BUT **deployments become complex**!
+	- How can we have **one way of deploying** Go, Java, Python or JavaScript .. microservices?
+		- Enter **containers**!
+
+---
+## Docker
+![](./images/microservices/docker.png)
+<!-- .slide: class="image-right image-fifty" -->
+
+- Create **Docker images** for each microservice
+- Docker image **contains everything a microservice needs** to run:
+	- Application Runtime (JDK or Python or NodeJS)
+	- Application code
+	- Dependencies 
+- You can run these docker containers **the same way** on any infrastructure
+	- Your local machine
+	- Corporate data center
+	- Cloud
+
+---
+<!-- .slide: class="onlydiagram" -->
+![](images/microservices/docker-traditional-deployment.png)
+> Traditional Deployment
+---
+<!-- .slide: class="onlydiagram" -->
+![](images/microservices/docker-virtual-machine-deployment.png)
+> Deployments using Virtual Machines
+---
+<!-- .slide: class="onlydiagram" -->
+![](images/microservices/docker-zz-deployment.png)
+> Deployments using Docker
+---
+<!-- .slide: class="onlydiagram" -->
+![](images/microservices/docker-architecture.png)
+> Docker Architecture
+
+---
+## Container Orchestration
+![](./images/microservices/container-orchestration.png) 
+<!-- .slide: class="image-right image-fifty" -->
+- **Requirement** : I want 10 instances of Microservice A container, 15 instances of Microservice B container and ....
+- Typical Features:
+	- **Auto Scaling** - Scale containers based on demand
+	- **Service Discovery** - Help microservices find one another
+	- **Load Balancer** - Distribute load among multiple instances of a microservice
+	- **Self Healing** - Do health checks and replace failing instances
+	- **Zero Downtime Deployments** - Release new versions without downtime
+
+---
+## Container Orchestration Options
+![](./images/microservices/container-orchestration.png) 
+<!-- .slide: class="image-right image-fifty" -->
+- **AWS Specific**
+	- AWS Elastic Container Service (ECS) 
+	- AWS Fargate : Serverless version of AWS ECS
+- **Cloud Neutral** - Kubernetes
+	- AWS - Elastic Kubernetes Service (EKS)
+	- Azure - Azure Kubernetes Service (AKS)
+	- GCP - Google Kubernetes Engine (GKE)
+	- EKS/AKS does not have a free tier!
+		- We use GCP and GKE!
+
+---
+<!-- .slide: class="onlydiagram" -->
+![](images/microservices/kubernetes-05-architecture-node-pod-containers.png)
+> Kubernetes Architecture
+---
+<!-- .slide: class="onlydiagram" -->
+![](images/microservices/kubernetes-02-architecture-cluster.png)
+> Kubernetes Architecture
+---
+<!-- .slide: class="onlydiagram" -->
+![](images/microservices/kubernetes-03-architecture-master-node.png)
+> Kubernetes Architecture
+---
+<!-- .slide: class="onlydiagram" -->
+![](images/microservices/kubernetes-04-architecture-worker-node.png)
+> Kubernetes Architecture
+---
+<!-- .slide: class="onlydiagram" -->
+![](images/microservices/kubernetes-06-deployment-1.png)
+> Kubernete Deployments
+---
+<!-- .slide: class="onlydiagram" -->
+![](images/microservices/kubernetes-06-deployment-2.png)
+> Kubernete Deployments
+---
+<!-- .slide: class="onlydiagram" -->
+![](images/microservices/kubernetes-07-deployment-replicaset-pod.png)
+> Kubernete Deployments
+---
+<!-- .slide: class="onlydiagram" -->
+![](images/microservices/kubernetes-08-service-intro.png)
+> Kubernete Service
+
+---
+## Kubernetes - Liveness and Readiness Probes
+![](images/microservices/microservice-chain.png)
+- Kubernetes uses probes to check the health of a microservice:	
+	- If readiness probe is not successful, no traffic is sent
+	- If liveness probe is not successful, pod is restarted
+- Spring Boot Actuator (>=2.3) provides inbuilt readiness and liveness probes:
+	- /health/readiness
+	- /health/liveness
+
+---
+<!-- .slide: class="center" -->
+# What Next?
+
+---
+## Docker & Kubernetes in Depth
+
+[![Image](https://www.springboottutorial.com/images/Course-DockerCrashCourseForJavaSpringBootDevelopers.png "Docker Crash Course for Java Spring Boot Developers")](https://links.in28minutes.com/in28minutes-Docker)
+
+[![Image](https://www.springboottutorial.com/images/Course-KubernetesCrashCourse.png "Kubernetes Crash Course for Java Spring Boot Developers")](https://links.in28minutes.com/in28minutes-Kubernetes)
+
+---
+## Full Stack
+
+[![Image](https://www.springboottutorial.com/images/Course-Go-Full-Stack-With-Spring-Boot-and-React.png "Go Full Stack with Spring Boot and React")](https://links.in28minutes.com/in28minutes-React)
+
+[![Image](https://www.springboottutorial.com/images/Course-Go-Full-Stack-With-SpringBoot-And-Angular.png "Go Full Stack with Spring Boot and Angular")](https://links.in28minutes.com/in28minutes-angular)
+
+---
+## AWS Certifications
+
+[![Image](https://www.springboottutorial.com/images/Course-aws-certified-developer-assoiciate.png "AWS Developer Associate Certification")](https://links.in28minutes.com/aws-dev-associate-learn)
+
+[![Image](https://www.springboottutorial.com/images/Course-aws-architect-associate-certification.png "AWS Architect Associate Certification")](https://links.in28minutes.com/aws-architect-associate-certification)
+
+---
+## Serverless
+
+[![Image](https://www.springboottutorial.com/images/Course-go-serverless.png "Go Serverless with AWS Lambda and Azure Functions")](https://links.in28minutes.com/serverless-learn)
+
+</script>
+			</section>
+
+		</div>
+
+	</div>
+
+	<script src="lib/js/head.min.js"></script>
+	<script src="js/reveal.js"></script>
+
+
+	<script>
+
+		// More info https://github.com/hakimel/reveal.js#configuration
+		Reveal.initialize({
+			// The "normal" size of the presentation, aspect ratio will be preserved
+			// when the presentation is scaled to fit different resolutions
+			width: 1200,
+			height: 700,
+
+			// Factor of the display size that should remain empty around the content
+			margin: 0.04,
+
+			// Bounds for smallest/largest possible scale to apply to content
+			minScale: 0.2,
+			maxScale: 2.0,
+
+			controls: false,
+			progress: false,
+			history: true,
+			center: false,
+			slideNumber: true,
+			fragments: false,
+			transition: 'none', // none/fade/slide/convex/concave/zoom
+
+			// More info https://github.com/hakimel/reveal.js#dependencies
+			dependencies: [
+				{ src: 'lib/js/classList.js', condition: function () { return !document.body.classList; } },
+				{ src: 'plugin/markdown/marked.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+				{ src: 'plugin/markdown/markdown.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+				{ src: 'plugin/highlight/highlight.js', async: true, callback: function () { hljs.initHighlightingOnLoad(); } },
+				{ src: 'plugin/zoom-js/zoom.js', async: true },
+				{ src: 'plugin/notes/notes.js', async: true }
+			]
+		});
+
+
+	</script>
+
+</body>
+
+</html>
