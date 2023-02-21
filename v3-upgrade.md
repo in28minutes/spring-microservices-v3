@@ -1,83 +1,89 @@
-## Spring Boot 3 Upgrade
+# Spring Boot 3 Upgrade - Changes from Spring Boot 2.4
+
+## Version Upgrades - Spring Boot, Spring Cloud and Java
+
+### pom.xml
+
+```xml
+<parent>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <!--<version>2.4.1</version>-->
+    <version>3.0.2</version>
+    <relativePath/> <!-- lookup parent from repository -->
+</parent>
+
+<properties>
+
+    <!-- <java.version>15</java.version> -->
+    <java.version>17</java.version>
+
+    <!--<spring-cloud.version>2020.0.0</spring-cloud.version>-->
+    <spring-cloud.version>2022.0.0</spring-cloud.version>
+
+</properties>
+```
 
 ## Zipkin Tracing Updates
 
 ### pom.xml
 
 ```xml
- 	<parent>
- 		<groupId>org.springframework.boot</groupId>
- 		<artifactId>spring-boot-starter-parent</artifactId>
-        <!--<version>2.4.1</version>-->
-        <version>3.0.2</version>
- 		<relativePath/> <!-- lookup parent from repository -->
- 	</parent>
- 
- 	<properties>
-        <!-- <java.version>15</java.version> -->
-        <java.version>17</java.version>
+<!-- Spring Boot 2 Tracing  : Sleuth (Tracing Configuration) > Brave (Tracer library) > Zipkin -->
 
-        <!--<spring-cloud.version>2020.0.0</spring-cloud.version>-->
-        <spring-cloud.version>2022.0.0</spring-cloud.version>
- 	</properties>
+<!-- 
+<dependency>
+    <groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-starter-sleuth</artifactId>
+</dependency>
+<dependency>
+    <groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-sleuth-brave</artifactId>
+</dependency>
+<dependency>
+    <groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-sleuth-zipkin</artifactId>
+</dependency>
 
-    <!-- Spring Boot 2 Tracing -->
+-->
 
-    <!-- Sleuth (Tracing Configuration) > Brave (Tracer library) > Zipkin -->
+<!-- Spring Boot 3+ Tracing -->
 
-    <!-- 
-    <dependency>
-        <groupId>org.springframework.cloud</groupId>
-        <artifactId>spring-cloud-starter-sleuth</artifactId>
-    </dependency>
-    <dependency>
-        <groupId>org.springframework.cloud</groupId>
-        <artifactId>spring-cloud-sleuth-brave</artifactId>
-    </dependency>
-    <dependency>
-        <groupId>org.springframework.cloud</groupId>
-        <artifactId>spring-cloud-sleuth-zipkin</artifactId>
-    </dependency>
+<!-- Micrometer > Brave/OpenTelemetry > Zipkin -->
 
-    -->
+<!-- Micrometer - Vendor-neutral application observability facade. Instrument your JVM-based application code without vendor lock-in.  Observation (Metrics & Logs) + Tracing.-->
 
-    <!-- Spring Boot 3+ Tracing -->
+<dependency>
+    <groupId>io.micrometer</groupId>
+    <artifactId>micrometer-observation</artifactId>
+</dependency>
 
-    <!-- Micrometer > Brave/OpenTelemetry > Zipkin -->
+<!-- Brave as Bridge -->
 
-    <!-- Micrometer - Vendor-neutral application observability facade. Instrument your JVM-based application code without vendor lock-in.  Observation (Metrics & Logs) + Tracing.-->
+<!--
+<dependency>
+    <groupId>io.micrometer</groupId>
+    <artifactId>micrometer-tracing-bridge-brave</artifactId>
+</dependency>
 
-    <dependency>
-        <groupId>io.micrometer</groupId>
-        <artifactId>micrometer-observation</artifactId>
-    </dependency>
+<dependency>
+    <groupId>io.zipkin.reporter2</groupId
+    <artifactId>zipkin-reporter-brave</artifactId>
+</dependency>
+-->
 
-    <!-- Brave as Bridge -->
+<!-- Open Telemetry as Bridge -->
+<!-- Open Telemetry - Simplified Observability (metrics, logs, and traces) -->
 
-    <!--
-    <dependency>
-        <groupId>io.micrometer</groupId>
-        <artifactId>micrometer-tracing-bridge-brave</artifactId>
-    </dependency>
+<dependency>
+    <groupId>io.micrometer</groupId>
+    <artifactId>micrometer-tracing-bridge-otel</artifactId>
+</dependency>
 
-    <dependency>
-        <groupId>io.zipkin.reporter2</groupId
-        <artifactId>zipkin-reporter-brave</artifactId>
-    </dependency>
-    -->
-
-    <!-- Open Telemetry as Bridge -->
-    <!-- Open Telemetry - Simplified Observability (metrics, logs, and traces) -->
-
-    <dependency>
-        <groupId>io.micrometer</groupId>
-        <artifactId>micrometer-tracing-bridge-otel</artifactId>
-    </dependency>
-
-    <dependency>
-        <groupId>io.opentelemetry</groupId>
-        <artifactId>opentelemetry-exporter-zipkin</artifactId>
-    </dependency>
+<dependency>
+    <groupId>io.opentelemetry</groupId>
+    <artifactId>opentelemetry-exporter-zipkin</artifactId>
+</dependency>
   
 ```
 
@@ -94,12 +100,12 @@ logging.pattern.level=%5p [${spring.application.name:},%X{traceId:-},%X{spanId:-
 pom.xml
 
 ```xml
-        <!-- COMMON CHANGES + -->
- 		<!-- Enables tracing of REST API calls made using Feign-->
- 		<dependency>
- 			<groupId>io.github.openfeign</groupId>
- 			<artifactId>feign-micrometer</artifactId>
- 		</dependency>
+<!-- COMMON CHANGES + -->
+<!-- Enables tracing of REST API calls made using Feign-->
+<dependency>
+	<groupId>io.github.openfeign</groupId>
+	<artifactId>feign-micrometer</artifactId>
+</dependency>
 ``` 
 
 
@@ -119,25 +125,25 @@ class RestTemplateConfiguration {
     }
 }
 
- @RestController
- public class CurrencyConversionController {
- 	
- 	@Autowired
- 	private CurrencyExchangeProxy proxy;
- 	
+@RestController
+public class CurrencyConversionController {
+	
 	@Autowired
-	private RestTemplate restTemplate;
+	private CurrencyExchangeProxy proxy;
+	
+    @Autowired
+    private RestTemplate restTemplate;
 
- 	@GetMapping("/currency-conversion/from/{from}/to/{to}/quantity/{quantity}")
- 	public CurrencyConversion calculateCurrencyConversion(
- 			@PathVariable String from,
- 		uriVariables.put("from",from);
- 		uriVariables.put("to",to);
- 		
- 		//ResponseEntity<CurrencyConversion> responseEntity = new RestTemplate().getForEntity
- 		ResponseEntity<CurrencyConversion> responseEntity = restTemplate.getForEntity
- 		("http://localhost:8000/currency-exchange/from/{from}/to/{to}", 
- 				CurrencyConversion.class, uriVariables);
+	@GetMapping("/currency-conversion/from/{from}/to/{to}/quantity/{quantity}")
+	public CurrencyConversion calculateCurrencyConversion(
+			@PathVariable String from,
+		uriVariables.put("from",from);
+		uriVariables.put("to",to);
+		
+		//ResponseEntity<CurrencyConversion> responseEntity = new RestTemplate().getForEntity
+		ResponseEntity<CurrencyConversion> responseEntity = restTemplate.getForEntity
+		("http://localhost:8000/currency-exchange/from/{from}/to/{to}", 
+				CurrencyConversion.class, uriVariables);
 ``` 		
 
 
@@ -167,8 +173,8 @@ Use mmv3 instead of mmv2
 | Section | Image Name  | Spring Boot 2 | Spring Boot 3|
 | -------- | ------------- | ------------- | ------------- |
 | Docker | Currency Exchange | in28min/mmv3-currency-exchange-service:0.0.1-SNAPSHOT | in28min/mmv3-currency-exchange-service:0.0.1-SNAPSHOT|
-| Docker | Currency Conversion  | in28min/mmv3-currency-conversion-service:0.0.1-SNAPSHOT  |in28min/mmv3-currency-conversion-service:0.0.1-SNAPSHOT|
-| Docker | API Gateway  | in28min/mmv3-api-gateway:0.0.1-SNAPSHOT  |in28min/mmv3-api-gateway:0.0.1-SNAPSHOT|
-| Docker | Naming Server | in28min/mmv3-naming-server:0.0.1-SNAPSHOT  |in28min/mmv3-naming-server:0.0.1-SNAPSHOT|
-| Kubernetes | Currency Exchange | in28min/mmv3-currency-exchange-service:0.0.11-SNAPSHOT (v11), in28min/mmv3-currency-exchange-service:0.0.12-SNAPSHOT (v12)| in28min/mmv3-currency-exchange-service:0.0.11-SNAPSHOT (v11), in28min/mmv3-currency-exchange-service:0.0.12-SNAPSHOT (v12)|
-| Kubernetes | Currency Conversion | in28min/mmv3-currency-conversion-service:0.0.11-SNAPSHOT (Uses CURRENCY_EXCHANGE_SERVICE_HOST), in28min/mmv3-currency-conversion-service:0.0.12-SNAPSHOT (Uses CURRENCY_EXCHANGE_URI)| in28min/mmv3-currency-conversion-service:0.0.11-SNAPSHOT (Uses CURRENCY_EXCHANGE_SERVICE_HOST), in28min/mmv3-currency-conversion-service:0.0.12-SNAPSHOT (Uses CURRENCY_EXCHANGE_URI)|
+| Docker | Currency Conversion  | in28min/mmv2-currency-conversion-service:0.0.1-SNAPSHOT  |in28min/mmv3-currency-conversion-service:0.0.1-SNAPSHOT|
+| Docker | API Gateway  | in28min/mmv2-api-gateway:0.0.1-SNAPSHOT  |in28min/mmv3-api-gateway:0.0.1-SNAPSHOT|
+| Docker | Naming Server | in28min/mmv2-naming-server:0.0.1-SNAPSHOT  |in28min/mmv3-naming-server:0.0.1-SNAPSHOT|
+| Kubernetes | Currency Exchange | in28min/mmv2-currency-exchange-service:0.0.11-SNAPSHOT (v11), in28min/mmv2-currency-exchange-service:0.0.12-SNAPSHOT (v12)| in28min/mmv3-currency-exchange-service:0.0.11-SNAPSHOT (v11), in28min/mmv3-currency-exchange-service:0.0.12-SNAPSHOT (v12)|
+| Kubernetes | Currency Conversion | in28min/mmv2-currency-conversion-service:0.0.11-SNAPSHOT (Uses CURRENCY_EXCHANGE_SERVICE_HOST), in28min/mmv2-currency-conversion-service:0.0.12-SNAPSHOT (Uses CURRENCY_EXCHANGE_URI)| in28min/mmv3-currency-conversion-service:0.0.11-SNAPSHOT (Uses CURRENCY_EXCHANGE_SERVICE_HOST), in28min/mmv3-currency-conversion-service:0.0.12-SNAPSHOT (Uses CURRENCY_EXCHANGE_URI)|
