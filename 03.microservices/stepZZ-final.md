@@ -15,7 +15,7 @@ Current Directory : /Ranga/git/01.udemy-course-repos/spring-microservices-v2/03.
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.4.1</version>
+		<version>3.0.2</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.in28minutes.microservices</groupId>
@@ -25,8 +25,8 @@ Current Directory : /Ranga/git/01.udemy-course-repos/spring-microservices-v2/03.
 	<description>Demo project for Spring Boot</description>
 
 	<properties>
-		<java.version>15</java.version>
-		<spring-cloud.version>2020.0.0</spring-cloud.version>
+		<java.version>17</java.version>
+		<spring-cloud.version>2022.0.0</spring-cloud.version>
 	</properties>
 
 	<dependencies>
@@ -47,14 +47,22 @@ Current Directory : /Ranga/git/01.udemy-course-repos/spring-microservices-v2/03.
 			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
 		</dependency>
 
+		<!-- This calls the Micrometer code, which is in charge of making observations.-->
 		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-sleuth</artifactId>
+			<groupId>io.micrometer</groupId>
+			<artifactId>micrometer-observation</artifactId>
 		</dependency>
 
+		<!-- This brings in the Micrometer Tracing facade as well as the glue code to utilise Brave, the Zipkin team's tracing solution.  -->
 		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-sleuth-zipkin</artifactId>
+			<groupId>io.micrometer</groupId>
+			<artifactId>micrometer-tracing-bridge-brave</artifactId>
+		</dependency>
+
+		<!-- A bit more glue code to integrate Zipkin with Brave -->
+		<dependency>
+			<groupId>io.zipkin.reporter2</groupId>
+			<artifactId>zipkin-reporter-brave</artifactId>
 		</dependency>
 
 		<dependency>
@@ -209,7 +217,12 @@ eureka.client.serviceUrl.defaultZone=http://localhost:8761/eureka
 #spring.cloud.gateway.discovery.locator.enabled=true
 #spring.cloud.gateway.discovery.locator.lowerCaseServiceId=true
 
-spring.sleuth.sampler.probability=1.0
+# spring.sleuth.sampler.probability=1.0
+
+management.tracing.sampling.probability=1.0
+logging.pattern.level=%5p [${spring.application.name:},%X{traceId:-},%X{spanId:-}]
+
+spring.config.import=optional:configserver:
 ```
 ---
 
@@ -242,7 +255,7 @@ class ApiGatewayApplicationTests {
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.4.1</version>
+		<version>3.0.2</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.in28minutes.microservices</groupId>
@@ -252,8 +265,8 @@ class ApiGatewayApplicationTests {
 	<description>Demo project for Spring Boot</description>
 
 	<properties>
-		<java.version>15</java.version>
-		<spring-cloud.version>2020.0.0</spring-cloud.version>
+		<java.version>17</java.version>
+		<spring-cloud.version>2022.0.0</spring-cloud.version>
 	</properties>
 
 	<dependencies>
@@ -279,14 +292,22 @@ class ApiGatewayApplicationTests {
 			<artifactId>spring-cloud-starter-openfeign</artifactId>
 		</dependency>
 		
+		<!-- This calls the Micrometer code, which is in charge of making observations.-->
 		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-sleuth</artifactId>
+			<groupId>io.micrometer</groupId>
+			<artifactId>micrometer-observation</artifactId>
 		</dependency>
 
+		<!-- This brings in the Micrometer Tracing facade as well as the glue code to utilise Brave, the Zipkin team's tracing solution.  -->
 		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-sleuth-zipkin</artifactId>
+			<groupId>io.micrometer</groupId>
+			<artifactId>micrometer-tracing-bridge-brave</artifactId>
+		</dependency>
+
+		<!-- A bit more glue code to integrate Zipkin with Brave -->
+		<dependency>
+			<groupId>io.zipkin.reporter2</groupId>
+			<artifactId>zipkin-reporter-brave</artifactId>
 		</dependency>
 
 		<dependency>
@@ -556,7 +577,12 @@ server.port=8100
 
 eureka.client.serviceUrl.defaultZone=http://localhost:8761/eureka
 
-spring.sleuth.sampler.probability=1.0
+# spring.sleuth.sampler.probability=1.0
+
+management.tracing.sampling.probability=1.0
+logging.pattern.level=%5p [${spring.application.name:},%X{traceId:-},%X{spanId:-}]
+
+spring.config.import=optional:configserver:
 ```
 ---
 
@@ -589,7 +615,7 @@ class CurrencyConversionServiceApplicationTests {
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.4.1</version>
+		<version>3.0.2</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.in28minutes.microservices</groupId>
@@ -599,8 +625,8 @@ class CurrencyConversionServiceApplicationTests {
 	<description>Demo project for Spring Boot</description>
 
 	<properties>
-		<java.version>15</java.version>
-		<spring-cloud.version>2020.0.0</spring-cloud.version>
+		<java.version>17</java.version>
+		<spring-cloud.version>2022.0.0</spring-cloud.version>
 	</properties>
 
 	<dependencies>
@@ -626,14 +652,22 @@ class CurrencyConversionServiceApplicationTests {
 			<artifactId>spring-cloud-starter-config</artifactId>
 		</dependency>
 
+		<!-- This calls the Micrometer code, which is in charge of making observations.-->
 		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-sleuth</artifactId>
+			<groupId>io.micrometer</groupId>
+			<artifactId>micrometer-observation</artifactId>
 		</dependency>
 
+		<!-- This brings in the Micrometer Tracing facade as well as the glue code to utilise Brave, the Zipkin team's tracing solution.  -->
 		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-sleuth-zipkin</artifactId>
+			<groupId>io.micrometer</groupId>
+			<artifactId>micrometer-tracing-bridge-brave</artifactId>
+		</dependency>
+
+		<!-- A bit more glue code to integrate Zipkin with Brave -->
+		<dependency>
+			<groupId>io.zipkin.reporter2</groupId>
+			<artifactId>zipkin-reporter-brave</artifactId>
 		</dependency>
 
 		<dependency>
@@ -752,9 +786,9 @@ package com.in28minutes.microservices.currencyexchangeservice;
 
 import java.math.BigDecimal;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 
 @Entity
 public class CurrencyExchange {
@@ -935,7 +969,12 @@ resilience4j.ratelimiter.instances.default.limitRefreshPeriod=10s
 resilience4j.bulkhead.instances.default.maxConcurrentCalls=10
 resilience4j.bulkhead.instances.sample-api.maxConcurrentCalls=10
 
-spring.sleuth.sampler.probability=1.0
+# spring.sleuth.sampler.probability=1.0
+
+management.tracing.sampling.probability=1.0
+logging.pattern.level=%5p [${spring.application.name:},%X{traceId:-},%X{spanId:-}]
+
+spring.config.import=optional:configserver:
 
 ##spring.zipkin.baseUrl=http://localhost:9411/
 ```
@@ -1014,7 +1053,7 @@ http://localhost:8765/currency-conversion-new/from/USD/to/INR/quantity/10
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.4.1</version>
+		<version>3.0.2</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.in28minutes.microservices</groupId>
@@ -1024,8 +1063,8 @@ http://localhost:8765/currency-conversion-new/from/USD/to/INR/quantity/10
 	<description>Demo project for Spring Boot Centralized Configuration</description>
 
 	<properties>
-		<java.version>15</java.version>
-		<spring-cloud.version>2020.0.0</spring-cloud.version>
+		<java.version>17</java.version>
+		<spring-cloud.version>2022.0.0</spring-cloud.version>
 	</properties>
 
 	<dependencies>
@@ -1253,7 +1292,7 @@ class LimitsServiceApplicationTests {
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.4.1</version>
+		<version>3.0.2</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.in28minutes.microservices</groupId>
@@ -1263,8 +1302,8 @@ class LimitsServiceApplicationTests {
 	<description>Demo project for Spring Boot</description>
 
 	<properties>
-		<java.version>15</java.version>
-		<spring-cloud.version>2020.0.0</spring-cloud.version>
+		<java.version>17</java.version>
+		<spring-cloud.version>2022.0.0</spring-cloud.version>
 	</properties>
 
 	<dependencies>
@@ -1388,7 +1427,7 @@ class NamingServerApplicationTests {
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.4.1</version>
+		<version>3.0.2</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.in28minutes.microservices</groupId>
@@ -1398,8 +1437,8 @@ class NamingServerApplicationTests {
 	<description>Centralized Configuration Server</description>
 
 	<properties>
-		<java.version>15</java.version>
-		<spring-cloud.version>2020.0.0</spring-cloud.version>
+		<java.version>17</java.version>
+		<spring-cloud.version>2022.0.0</spring-cloud.version>
 	</properties>
 
 	<dependencies>
