@@ -4,7 +4,7 @@
 
 ### pom.xml
 
-```
+```xml
  	<parent>
  		<groupId>org.springframework.boot</groupId>
  		<artifactId>spring-boot-starter-parent</artifactId>
@@ -83,9 +83,9 @@
 
 ### application.properties
 
-```
-#spring.sleuth.sampler.probability=1.0
-management.tracing.sampling.probability=1.0
+```yaml
+#spring.sleuth.sampler.probability=1.0 #v2
+management.tracing.sampling.probability=1.0 #v3
 logging.pattern.level=%5p [${spring.application.name:},%X{traceId:-},%X{spanId:-}]
 ```
 
@@ -93,7 +93,7 @@ logging.pattern.level=%5p [${spring.application.name:},%X{traceId:-},%X{spanId:-
 
 pom.xml
 
-```
+```xml
         <!-- COMMON CHANGES + -->
  		<!-- Enables tracing of REST API calls made using Feign-->
  		<dependency>
@@ -105,7 +105,7 @@ pom.xml
 
 ### /03.microservices/currency-conversion-service/src/main/java/com/in28minutes/microservices/currencyconversionservice/CurrencyConversionController.java
 
-```
+```java
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -144,7 +144,7 @@ class RestTemplateConfiguration {
 
 ## /03.microservices/currency-exchange-service/src/main/java/com/in28minutes/microservices/currencyexchangeservice/CurrencyExchange.java
 
-``` 
+```java
 //import javax.persistence.Column;
 //import javax.persistence.Entity;
 //import javax.persistence.Id;
@@ -156,8 +156,8 @@ import jakarta.persistence.Id;
 
 ## Docker Compose Zipkin URL Configuration
 ```yaml
-#SPRING.ZIPKIN.BASEURL: http://zipkin-server:9411/
-MANAGEMENT.ZIPKIN.TRACING.ENDPOINT: http://zipkin-server:9411/api/v2/spans
+#SPRING.ZIPKIN.BASEURL: http://zipkin-server:9411/ #v2
+MANAGEMENT.ZIPKIN.TRACING.ENDPOINT: http://zipkin-server:9411/api/v2/spans #v3
 ```
 
 ## Naming of Images
