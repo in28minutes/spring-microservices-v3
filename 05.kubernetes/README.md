@@ -1,16 +1,16 @@
-# Docker
+# Kubernetes and Microservices
 
 ## Images
 
 You can reuse these images instead of creating and pushing new container images
 
 - Currency Exchange Service 
-	- v11 - in28min/mmv2-currency-exchange-service:0.0.11-SNAPSHOT
-  - v12 - in28min/mmv2-currency-exchange-service:0.0.12-SNAPSHOT
+	- v11 - in28min/mmv3-currency-exchange-service:0.0.11-SNAPSHOT
+  - v12 - in28min/mmv3-currency-exchange-service:0.0.12-SNAPSHOT
 - Currency Conversion Service
-	- in28min/mmv2-currency-conversion-service:0.0.11-SNAPSHOT
+	- in28min/mmv3-currency-conversion-service:0.0.11-SNAPSHOT
     - Uses CURRENCY_EXCHANGE_SERVICE_HOST
-  - in28min/mmv2-currency-conversion-service:0.0.12-SNAPSHOT
+  - in28min/mmv3-currency-conversion-service:0.0.12-SNAPSHOT
     - Uses CURRENCY_EXCHANGE_URI
 
 ## URLS
@@ -84,10 +84,10 @@ kubectl delete pod hello-world-rest-api-67c79fd44f-8bhdt
 
 gcloud container clusters get-credentials in28minutes-cluster --zone us-central1-c --project solid-course-258105
 docker login
-docker push in28min/mmv2-currency-exchange-service:0.0.11-SNAPSHOT
-docker push in28min/mmv2-currency-conversion-service:0.0.11-SNAPSHOT
+docker push in28min/mmv3-currency-exchange-service:0.0.11-SNAPSHOT
+docker push in28min/mmv3-currency-conversion-service:0.0.11-SNAPSHOT
 
-kubectl create deployment currency-exchange --image=in28min/mmv2-currency-exchange-service:0.0.11-SNAPSHOT
+kubectl create deployment currency-exchange --image=in28min/mmv3-currency-exchange-service:0.0.11-SNAPSHOT
 kubectl expose deployment currency-exchange --type=LoadBalancer --port=8000
 kubectl get svc
 kubectl get services
@@ -97,7 +97,7 @@ kubectl get replicaset
 kubectl get rs
 kubectl get all
 
-kubectl create deployment currency-conversion --image=in28min/mmv2-currency-conversion-service:0.0.11-SNAPSHOT
+kubectl create deployment currency-conversion --image=in28min/mmv3-currency-conversion-service:0.0.11-SNAPSHOT
 kubectl expose deployment currency-conversion --type=LoadBalancer --port=8100
 
 kubectl get svc --watch
@@ -135,6 +135,6 @@ kubectl get configmap currency-conversion -o yaml >> configmap.yaml
 
 watch -n 0.1 curl http://34.66.241.150:8100/currency-conversion-feign/from/USD/to/INR/quantity/10
 
-docker push in28min/mmv2-currency-conversion-service:0.0.12-SNAPSHOT
-docker push in28min/mmv2-currency-exchange-service:0.0.12-SNAPSHOT
+docker push in28min/mmv3-currency-conversion-service:0.0.12-SNAPSHOT
+docker push in28min/mmv3-currency-exchange-service:0.0.12-SNAPSHOT
 ```
