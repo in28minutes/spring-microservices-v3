@@ -1,8 +1,6 @@
-## 03.microservices/01-step-by-step-changes/microservices-v2-1.md
+## Spring Boot 3 Upgrade
 
-+(5) Use `management.zipkin.tracing.endpoint=http://zipkin-server:9411/api/v2/spans` instead of `SPRING.ZIPKIN.BASEURL: http://zipkin-server:9411/` as your environment variable
-
-## Common Changes
+## Zipkin Tracing Updates
 
 ### pom.xml
 
@@ -91,7 +89,7 @@ management.tracing.sampling.probability=1.0
 logging.pattern.level=%5p [${spring.application.name:},%X{traceId:-},%X{spanId:-}]
 ```
 
-## currency-conversion-service
+## Currency Conversion Service - Uses Feign
 
 pom.xml
 
@@ -156,9 +154,17 @@ import jakarta.persistence.Id;
 ```
 
 
-### 03.microservices/currency-exchange-service/src/main/resources/application.properties
+## Docker Compose Zipkin URL Configuration
+```yaml
+#SPRING.ZIPKIN.BASEURL: http://zipkin-server:9411/
+MANAGEMENT.ZIPKIN.TRACING.ENDPOINT: http://zipkin-server:9411/api/v2/spans
+```
 
-```
-spring.jpa.defer-datasource-initialization=true
-spring.h2.console.enabled=true
-```
+## Naming of Images
+
+- mmv3 instead of mmv2
+
+- in28min/mmv3-currency-exchange-service:0.0.1-SNAPSHOT
+- in28min/mmv3-currency-conversion-service:0.0.1-SNAPSHOT
+- in28min/mmv3-api-gateway:0.0.1-SNAPSHOT
+- in28min/mmv3-naming-server:0.0.1-SNAPSHOT
