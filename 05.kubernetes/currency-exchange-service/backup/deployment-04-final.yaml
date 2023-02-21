@@ -23,7 +23,7 @@ spec:
         app: currency-exchange
     spec:
       containers:
-      - image: in28min/mmv2-currency-exchange-service:0.0.11-SNAPSHOT
+      - image: in28min/mmv3-currency-exchange-service:0.0.11-SNAPSHOT
         imagePullPolicy: IfNotPresent
         name: mmv2-currency-exchange-service
         readinessProbe:

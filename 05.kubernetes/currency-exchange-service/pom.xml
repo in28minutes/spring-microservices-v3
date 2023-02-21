@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.4.1</version>
+		<version>3.0.2</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.in28minutes.microservices</groupId>
@@ -15,8 +15,8 @@
 	<description>Demo project for Spring Boot</description>
 
 	<properties>
-		<java.version>15</java.version>
-		<spring-cloud.version>2020.0.0</spring-cloud.version>
+		<java.version>17</java.version>
+		<spring-cloud.version>2022.0.0</spring-cloud.version>
 	</properties>
 
 	<dependencies>
@@ -43,11 +43,22 @@
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-config</artifactId>
 		</dependency>
- -->
+ 
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-sleuth</artifactId>
-		</dependency>
+		</dependency>-->
+		
+		<dependency>
+	        <groupId>io.micrometer</groupId>
+	        <artifactId>micrometer-observation</artifactId>
+    	</dependency>
+
+		<dependency>
+	        <groupId>io.micrometer</groupId>
+	        <artifactId>micrometer-tracing-bridge-otel</artifactId>
+	    </dependency>
+
 		
 		<!-- CHANGE-KUBERNETES -->
 <!-- 		<dependency>
@@ -63,7 +74,13 @@
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
-		</dependency>
+		</dependency>		
+	
+	    <dependency>
+	        <groupId>io.opentelemetry</groupId>
+	        <artifactId>opentelemetry-exporter-zipkin</artifactId>
+	    </dependency>
+
  -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -107,7 +124,7 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
 					<image>
-						<name>in28min/mmv2-${project.artifactId}:${project.version}</name>
+						<name>in28min/mmv3-${project.artifactId}:${project.version}</name>
 					</image>
 					<pullPolicy>IF_NOT_PRESENT</pullPolicy>
 				</configuration>				
