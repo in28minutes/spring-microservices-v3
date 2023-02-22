@@ -63,3 +63,4 @@ MANAGEMENT.ZIPKIN.TRACING.ENDPOINT: http://zipkin-server:9411/api/v2/spans #v3
 
 Complete file - https://github.com/in28minutes/spring-microservices-v3/blob/main/04.docker/backup/docker-compose-05-zipkin.yaml
 
+## Delete Lecture - 189. Step 21 - Running Zipkin and RabbitMQ with Docker Compose
