@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 
-	<title>Microservices - V2 </title>
+	<title>Microservices - V3 </title>
 
 	<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
 	<meta name="author" content="Hakim El Hattab">
@@ -54,6 +54,42 @@
 # Microservices
 
 ---
+## Microservices - Evolution
+![](./images/microservices/docker.png)
+<!-- .slide: class="image-right image-forty" -->
+- **Goal**: Explore Microservices Evolution
+	- **V1** - Spring Boot v2.3 and LOWER
+		- Github - spring-microservices
+	- **V2** - Spring Boot v2.4(+)
+		- Spring Cloud LoadBalancer (Ribbon)
+		- Spring Cloud Gateway (Zuul)
+		- Resilience4j (Hystrix)
+		- Docker
+		- Kubernetes
+		- Github - spring-microservices-v2
+	- **V3** - Spring Boot v3(+)
+		- Observability 
+			- Micrometer (Spring Cloud Sleuth)
+			- OpenTelemetry
+		- Github - spring-microservices-v3
+---
+## Microservices - V2 to V3 Updates
+
+![](./images/microservices/observability.jpeg)
+<!-- .slide: class="image-right image-forty" -->
+
+- **V1**(2.0.0 to 2.3.x), **V2** (2.4.x to 2.9.x), **V3** (3.0.0+)
+- V2 to V3: https://github.com/in28minutes/spring-microservices-v3 - v3-upgrade.md
+- Key Changes:
+	- **Observability** - Ability of a system to measure its current state based on the generated data
+		- Monitoring is reactive while Observability is proactive
+		- **OpenTelemetry**: One Standard for Logs + Traces + Metrics
+			- Cross Language
+			- Cross Platform
+		- **Micrometer** (Replaces Spring Cloud Sleuth)
+			- Collect (Logs + Traces + Metrics)
+
+---
 ## Microservices - V2
 ![](./images/microservices/docker.png)
 <!-- .slide: class="image-right image-fifty one30" -->
@@ -66,6 +102,7 @@
 - **V1** - Old Versions 
 	- Spring Boot v2.3 and LOWER
 	- ** Continue on to next lecture :( **
+
 
 ---
 ## Microservices - V2
