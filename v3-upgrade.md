@@ -44,7 +44,10 @@ import jakarta.persistence.Id;
 ### pom.xml
 
 ```xml
-<!-- SB2  : Sleuth (Tracing Configuration) > Brave (Tracer library) > Zipkin -->
+<!-- SB2  : Sleuth (Tracing Configuration) 
+            > Brave (Tracer library) 
+            > Zipkin 
+-->
 
 <!-- 
 <dependency>
@@ -61,16 +64,37 @@ import jakarta.persistence.Id;
 </dependency>
 -->
 
-<!-- SB3 : Micrometer > Brave/OpenTelemetry > Zipkin -->
+<!-- SB3 :  Micrometer 
+            > OpenTelemetry 
+            > Zipkin 
+-->
 
-<!-- Micrometer - Vendor-neutral application observability facade. Instrument your JVM-based application code without vendor lock-in.  Observation (Metrics & Logs) + Tracing.-->
+<!-- Micrometer - Vendor-neutral application observability facade. 
+    Instrument your JVM-based application code without vendor lock-in.  
+    Observation (Metrics & Logs) + Tracing.
+-->
 
 <dependency>
     <groupId>io.micrometer</groupId>
     <artifactId>micrometer-observation</artifactId>
 </dependency>
 
-<!-- OPTION 1: Brave as Bridge -->
+<!-- OPTION 1: Open Telemetry as Bridge (RECOMMENDED) -->
+<!-- Open Telemetry 
+    - Simplified Observability (metrics, logs, and traces) -->
+
+<dependency>
+    <groupId>io.micrometer</groupId>
+    <artifactId>micrometer-tracing-bridge-otel</artifactId>
+</dependency>
+
+<dependency>
+    <groupId>io.opentelemetry</groupId>
+    <artifactId>opentelemetry-exporter-zipkin</artifactId>
+</dependency>
+
+
+<!-- OPTION 2: Brave as Bridge -->
 
 <!--
 <dependency>
@@ -83,19 +107,6 @@ import jakarta.persistence.Id;
     <artifactId>zipkin-reporter-brave</artifactId>
 </dependency>
 -->
-
-<!-- OPTION 2: Open Telemetry as Bridge (RECOMMENDED) -->
-<!-- Open Telemetry - Simplified Observability (metrics, logs, and traces) -->
-
-<dependency>
-    <groupId>io.micrometer</groupId>
-    <artifactId>micrometer-tracing-bridge-otel</artifactId>
-</dependency>
-
-<dependency>
-    <groupId>io.opentelemetry</groupId>
-    <artifactId>opentelemetry-exporter-zipkin</artifactId>
-</dependency>
   
 ```
 
