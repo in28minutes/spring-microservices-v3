@@ -54,47 +54,10 @@
 # Microservices
 
 ---
-## Microservices - Evolution
-![](./images/microservices/docker.png)
-<!-- .slide: class="image-right image-forty" -->
-- **Goal**: Explore Microservices Evolution
-	- **V1** - Spring Boot v2.3 and LOWER
-		- Github - spring-microservices
-	- **V2** - Spring Boot v2.4(+)
-		- Spring Cloud LoadBalancer (Ribbon)
-		- Spring Cloud Gateway (Zuul)
-		- Resilience4j (Hystrix)
-		- Docker
-		- Kubernetes
-		- Github - spring-microservices-v2
-	- **V3** - Spring Boot v3(+)
-		- Observability 
-			- Micrometer (Spring Cloud Sleuth)
-			- OpenTelemetry
-		- Github - spring-microservices-v3
----
-## Microservices - V2 to V3 Updates
-
-![](./images/microservices/observability.jpeg)
-<!-- .slide: class="image-right image-twenty one20" -->
-
-- **V1**(2.0.0 to 2.3.x), **V2** (2.4.x to 2.9.x), **V3** (3.0.0+)
-- https://github.com/in28minutes/spring-microservices-v3 
-	- v3-upgrade.md
-- Key Changes:
-	- **Observability** - Ability of a system to measure its current state based on the generated data
-		- Monitoring is reactive while Observability is proactive
-		- **OpenTelemetry**: One Standard for Logs + Traces + Metrics
-			- Cross Language
-			- Cross Platform
-		- **Micrometer** (Replaces Spring Cloud Sleuth)
-			- Collect (Logs + Traces + Metrics)
-
----
-## Microservices - V2 & V3
+## Microservices - V2
 ![](./images/microservices/docker.png)
 <!-- .slide: class="image-right image-fifty one30" -->
-- **V2 (2.4+) & V3 (3+)** - Latest Releases of 
+- **V2 (2.4+)** - Latest Releases of 
 	- Spring Boot 
 	- Spring Cloud
 	- Docker and 
@@ -103,6 +66,44 @@
 - **V1** - Old Versions 
 	- Spring Boot v2.3 and LOWER
 	- ** Continue on to next lecture :( **
+
+---
+## Microservices - Evolution
+![](./images/microservices/docker.png)
+<!-- .slide: class="image-right image-forty" -->
+- **Goal**: Evolve with Microservices
+	- **V1** - Spring Boot 2.0.0 to 2.3.x
+	- **V2** - Spring Boot 2.4.0 to 3.0.0 to ...
+		- Spring Cloud LoadBalancer (Ribbon)
+		- Spring Cloud Gateway (Zuul)
+		- Resilience4j (Hystrix)
+		- NEW: Docker
+		- NEW: Kubernetes
+		- NEW: Observability 
+			- NEW: Micrometer (Spring Cloud Sleuth)
+			- NEW: OpenTelemetry
+
+---
+## Microservices - Spring Boot 2 vs Spring Boot 3
+
+![](./images/microservices/observability.jpeg)
+<!-- .slide: class="image-right image-twenty one20" -->
+- **V1**(2.0.0 to 2.3.x)
+- **V2** (2.4.x to 3.0.0 to ..)
+- Spring Boot 2.4.0+ 
+	- https://github.com/in28minutes/spring-microservices-v2
+- Spring Boot 3.0.0+
+	- https://github.com/in28minutes/spring-microservices-v3 
+	- Notes: v3-upgrade.md
+	- Key Changes:
+		- **Observability** - Ability of a system to measure its current state based on the generated data
+			- Monitoring is reactive while Observability is proactive
+			- **OpenTelemetry**: One Standard for Logs + Traces + Metrics
+				- Cross Language
+				- Cross Platform
+			- **Micrometer** (Replaces Spring Cloud Sleuth)
+				- Collect (Logs + Traces + Metrics)
+
 
 
 ---
@@ -123,22 +124,20 @@
 
 ---
 
-## Microservices - V2 & V3 - What's New
+## Microservices - V2 - What's New
 ![](./images/microservices/docker.png)
 <!-- .slide: class="image-right image-forty" -->
 - Microservices Evolve Quickly
-- **V2** (Spring Boot - 2.4.x to 2.9.x)
+- **V2** (Spring Boot - 2.4.x to 3.0.0 to LATEST)
 	- **Spring Cloud LoadBalancer** instead of Ribbon
 	- **Spring Cloud Gateway** instead of Zuul
 	- **Resilience4j** instead of Hystrix 
 	- **Docker**: Containerize Microservices
 		- Run microservices using Docker and Docker Compose
 	- **Kubernetes**: Orchestrate all your Microservices with Kubernetes
-- **V3** (Spring Boot - 3.0.0 to LATEST)
 	- **OpenTelemetry**: One Standard - Logs, Traces & Metrics
 	- **Micrometer** (Replaces Spring Cloud Sleuth)
-	- Updates for Docker and Kubernetes!
-
+	
 ---
 <!-- .slide: class="onlydiagram" -->
 ![](images/microservices/monolith.png)
@@ -372,11 +371,6 @@ From https://docs.spring.io
 ## Distributed Tracing
 
 ---
-<!-- .slide: class="onlydiagram" -->
-![](images/microservices/distributed-tracing.png)
-## Distributed Tracing - Asynchronous
-
----
 ## Microservices
 ![](./images/microservices/microservice-example.png)
 - Enterprises are heading towards microservices architectures
@@ -549,7 +543,7 @@ From https://docs.spring.io
 			history: true,
 			center: false,
 			slideNumber: true,
-			fragments: false,
+			//fragments: false,
 			transition: 'none', // none/fade/slide/convex/concave/zoom
 
 			// More info https://github.com/hakimel/reveal.js#dependencies

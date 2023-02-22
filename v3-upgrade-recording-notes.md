@@ -16,8 +16,8 @@ Connect our currency exchange service to Zipkin.
 All microservices will send traces to Zipkin over HTTP. Zipkin will store the traces in an in-memory data and providing a UI around it.
 
 Dependencies are different based on the version of Spring Boot:
-- V2 dependencies
-- V3 dependencies
+- SB2 dependencies
+- SB3 dependencies
 
 In addition you need sampling configuration. big performance impact if we sample every request. 1.0 - trace every request. trace 5% of the request => 0.05.
 
@@ -59,16 +59,10 @@ In the previous section we played with all the different microservices, API gate
 In the next series of videos, we want to simplify launching of microservices. We will be using Docker and Docker Compose in this section! We will be using Kubernetes in the next section.
 
 We want to ensure that the course is compatible with Spring Boot 2 and Spring Boot 3. 
-- **V1** - DID NOT USE DOCKER/Kubernetes
-- **V2** - https://github.com/in28minutes/spring-microservices-v2
-- **V3** - https://github.com/in28minutes/spring-microservices-v3
+- **Spring Boot 2** - https://github.com/in28minutes/spring-microservices-v2
+- **Spring Boot 3** - https://github.com/in28minutes/spring-microservices-v3
 
 ## New Slides 
-
-- Microservices - Evolution
-- Microservices - V2 to V3 Updates
-- Microservices - V2 & V3
-- Microservices - V2 & V3 - What's New
 
 ## Text Lecture - Spring Boot 3 Update - Zipkin URL Configuration
 
@@ -77,8 +71,8 @@ BEFORE Step 20 - Running Zipkin with Docker Compose
 In the docker compose configuration, please use MANAGEMENT.ZIPKIN.TRACING.ENDPOINT instead of SPRING.ZIPKIN.BASEURL. An example is shown below.
 
 ```yaml
-#SPRING.ZIPKIN.BASEURL: http://zipkin-server:9411/ #v2
-MANAGEMENT.ZIPKIN.TRACING.ENDPOINT: http://zipkin-server:9411/api/v2/spans #v3
+#SPRING.ZIPKIN.BASEURL: http://zipkin-server:9411/ #SB2
+MANAGEMENT.ZIPKIN.TRACING.ENDPOINT: http://zipkin-server:9411/api/v2/spans #SB3
 ```
 
 Complete file - https://github.com/in28minutes/spring-microservices-v3/blob/main/04.docker/backup/docker-compose-05-zipkin.yaml
@@ -94,6 +88,5 @@ Complete file - https://github.com/in28minutes/spring-microservices-v3/blob/main
 
 ## COURSE DESCRIPTION
 - Remove mentions of RabbitMQ
-- Update Sections Names for Docker and Kubernetes
 - Update Text Lectures
 	- Change Links from V2 to V3
