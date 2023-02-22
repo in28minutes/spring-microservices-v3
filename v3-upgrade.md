@@ -1,35 +1,51 @@
-# Spring Boot 3 Upgrade - Changes from Spring Boot 2.4
+# Microservices with Spring Boot, Spring Cloud, Docker & Kubernetes
 
-## Version Upgrades - Spring Boot, Spring Cloud and Java
+- **V1** (Spring Boot - 2.0.0 to 2.3.x)
+- **V2** (Spring Boot - 2.4.x to 2.9.x)
+- **V3** (Spring Boot - 3.0.0 to LATEST)
 
-### pom.xml
+## V2 vs V3
+
+### Versions in pom.xml
 
 ```xml
 <parent>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
-    <!--<version>2.4.1</version>-->
+    <!--<version>2.4.1</version> V2-->
     <version>3.0.2</version>
     <relativePath/> <!-- lookup parent from repository -->
 </parent>
 
 <properties>
 
-    <!-- <java.version>15</java.version> -->
+    <!-- <java.version>15</java.version> V2-->
     <java.version>17</java.version>
 
-    <!--<spring-cloud.version>2020.0.0</spring-cloud.version>-->
+    <!--<spring-cloud.version>2020.0.0</spring-cloud.version> V2-->
     <spring-cloud.version>2022.0.0</spring-cloud.version>
 
 </properties>
 ```
 
-## Zipkin Tracing Updates
+## Jakarta instead of javax - CurrencyExchange.java
+
+```java
+//import javax.persistence.Column; //V2
+//import javax.persistence.Entity; //V2
+//import javax.persistence.Id;  //V2
+import jakarta.persistence.Column; 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+```
+
+
+### Distributed Tracing
 
 ### pom.xml
 
 ```xml
-<!-- Spring Boot 2 Tracing  : Sleuth (Tracing Configuration) > Brave (Tracer library) > Zipkin -->
+<!-- V2  : Sleuth (Tracing Configuration) > Brave (Tracer library) > Zipkin -->
 
 <!-- 
 <dependency>
@@ -44,12 +60,9 @@
     <groupId>org.springframework.cloud</groupId>
     <artifactId>spring-cloud-sleuth-zipkin</artifactId>
 </dependency>
-
 -->
 
-<!-- Spring Boot 3+ Tracing -->
-
-<!-- Micrometer > Brave/OpenTelemetry > Zipkin -->
+<!-- V3 : Micrometer > Brave/OpenTelemetry > Zipkin -->
 
 <!-- Micrometer - Vendor-neutral application observability facade. Instrument your JVM-based application code without vendor lock-in.  Observation (Metrics & Logs) + Tracing.-->
 
@@ -58,7 +71,7 @@
     <artifactId>micrometer-observation</artifactId>
 </dependency>
 
-<!-- Brave as Bridge -->
+<!-- OPTION 1: Brave as Bridge -->
 
 <!--
 <dependency>
@@ -72,7 +85,7 @@
 </dependency>
 -->
 
-<!-- Open Telemetry as Bridge -->
+<!-- OPTION 2: Open Telemetry as Bridge (RECOMMENDED) -->
 <!-- Open Telemetry - Simplified Observability (metrics, logs, and traces) -->
 
 <dependency>
@@ -90,9 +103,9 @@
 ### application.properties
 
 ```yaml
-#spring.sleuth.sampler.probability=1.0 #v2
-management.tracing.sampling.probability=1.0 #v3
-logging.pattern.level=%5p [${spring.application.name:},%X{traceId:-},%X{spanId:-}]
+#spring.sleuth.sampler.probability=1.0 #V2
+management.tracing.sampling.probability=1.0 #V3
+logging.pattern.level=%5p [${spring.application.name:},%X{traceId:-},%X{spanId:-}] #V3
 ```
 
 ## Currency Conversion Service - Uses Feign
@@ -101,7 +114,7 @@ pom.xml
 
 ```xml
 <!-- COMMON CHANGES + -->
-<!-- Enables tracing of REST API calls made using Feign-->
+<!-- Enables tracing of REST API calls made using Feign - V3 ONLY-->
 <dependency>
 	<groupId>io.github.openfeign</groupId>
 	<artifactId>feign-micrometer</artifactId>
@@ -144,21 +157,7 @@ public class CurrencyConversionController {
 		ResponseEntity<CurrencyConversion> responseEntity = restTemplate.getForEntity
 		("http://localhost:8000/currency-exchange/from/{from}/to/{to}", 
 				CurrencyConversion.class, uriVariables);
-``` 		
-
-
-
-## /03.microservices/currency-exchange-service/src/main/java/com/in28minutes/microservices/currencyexchangeservice/CurrencyExchange.java
-
-```java
-//import javax.persistence.Column;
-//import javax.persistence.Entity;
-//import javax.persistence.Id;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
 ```
-
 
 ## Docker Compose Zipkin URL Configuration
 ```yaml
@@ -168,7 +167,9 @@ MANAGEMENT.ZIPKIN.TRACING.ENDPOINT: http://zipkin-server:9411/api/v2/spans #v3
 
 ## Naming of Images
 
-Use mmv3 instead of mmv2
+- **V1** - DID NOT USE DOCKER
+- **V2** - mmv2
+- **V3** - mmv3
 
 | Section | Image Name  | Spring Boot 2 | Spring Boot 3|
 | -------- | ------------- | ------------- | ------------- |
