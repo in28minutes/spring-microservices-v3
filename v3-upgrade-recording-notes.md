@@ -1,3 +1,14 @@
+# Microservices with Spring Cloud - V2
+
+## Text Lecture: Feel Free to Use Spring Boot Version
+- Add before `Step 01 - Setting up Limits Microservice - V2`
+
+## Step 21 - QuickStart by Importing Microservices
+- Editing ONLY
+	- Add V3 URL
+
+# Docker with Microservices using Spring Boot and Spring Cloud - V2
+
 ## Step 12 - Connecting Currency Exchange Microservice with Zipkin
 
 Connect our currency exchange service to Zipkin.
@@ -52,7 +63,14 @@ We want to ensure that the course is compatible with Spring Boot 2 and Spring Bo
 - **V2** - https://github.com/in28minutes/spring-microservices-v2
 - **V3** - https://github.com/in28minutes/spring-microservices-v3
 
+## New Slides 
+
+- Microservices - Evolution
+- Microservices - V2 to V3 Updates
+
 ## Text Lecture - Spring Boot 3 Update - Zipkin URL Configuration
+
+BEFORE Step 20 - Running Zipkin with Docker Compose
 
 In the docker compose configuration, please use MANAGEMENT.ZIPKIN.TRACING.ENDPOINT instead of SPRING.ZIPKIN.BASEURL. An example is shown below.
 
@@ -63,4 +81,17 @@ MANAGEMENT.ZIPKIN.TRACING.ENDPOINT: http://zipkin-server:9411/api/v2/spans #v3
 
 Complete file - https://github.com/in28minutes/spring-microservices-v3/blob/main/04.docker/backup/docker-compose-05-zipkin.yaml
 
+
+## Step 20 - Running Zipkin with Docker Compose
+
+- Editing ONLY
+	- ADD overlay for MANAGEMENT.ZIPKIN.TRACING.ENDPOINT
+	- Remove mentions of RabbitMQ
+
 ## Delete Lecture - 189. Step 21 - Running Zipkin and RabbitMQ with Docker Compose
+
+## COURSE DESCRIPTION
+- Remove mentions of RabbitMQ
+- Update Sections Names for Docker and Kubernetes
+- Update Text Lectures
+	- Change Links from V2 to V3
