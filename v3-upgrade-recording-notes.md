@@ -67,6 +67,8 @@ We want to ensure that the course is compatible with Spring Boot 2 and Spring Bo
 
 - Microservices - Evolution
 - Microservices - V2 to V3 Updates
+- Microservices - V2 & V3
+- Microservices - V2 & V3 - What's New
 
 ## Text Lecture - Spring Boot 3 Update - Zipkin URL Configuration
 
