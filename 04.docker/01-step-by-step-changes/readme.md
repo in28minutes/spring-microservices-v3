@@ -229,22 +229,73 @@ public class CurrencyConversionController {
 
 ```
 
-docker push docker.io/in28min/mmv2-currency-exchange-service:0.0.1-SNAPSHOT
+
+## Step 14
+
+- Step 14 - Getting Setup with Microservices for Creating Container Images
+- Step 15 - Creating Container Image for Currency Exchange Microservice
+
+```
+docker push docker.io/in28min/mmv3-currency-exchange-service:0.0.1-SNAPSHOT
 docker-compose --version
 docker-compose up
-docker push in28min/mmv2-naming-server:0.0.1-SNAPSHOT
-docker push in28min/mmv2-currency-conversion-service:0.0.1-SNAPSHOT
-docker push in28min/mmv2-api-gateway:0.0.1-SNAPSHOT
+docker push in28min/mmv3-naming-server:0.0.1-SNAPSHOT
+docker push in28min/mmv3-currency-conversion-service:0.0.1-SNAPSHOT
+docker push in28min/mmv3-api-gateway:0.0.1-SNAPSHOT
 watch -n 0.1 curl http://localhost:8000/sample-api
 ```
 
--  Step 14 - Getting Setup with Microservices for Creating Container Images
--  Step 15 - Creating Container Image for Currency Exchange Microservice
+
+## Docker Compose
+
+## Docker Section - Connect Microservices with Zipkin
+
+(1) Compare and try with the Docker Compose Backup files here:
+- (5 Docker Compose Backup Files)[https://github.com/in28minutes/spring-microservices-v3/tree/main/04.docker/backup]
+
+(2) Try adding `restart: always` to zipkin-server in docker-compose.yaml
+
+```
+  zipkin-server:
+    image: openzipkin/zipkin:2.23
+    mem_limit: 300m
+    ports:
+      - "9411:9411"
+    networks:
+      - currency-network
+    restart: always #Restart if there is a problem starting up
+```
+
+(3) Can you try adding EUREKA.CLIENT.FETCHREGISTRY property to all microservice where we configured EUREKA.CLIENT.SERVICEURL.DEFAULTZONE as shown below:
+
+```
+environment:
+  EUREKA.CLIENT.SERVICEURL.DEFAULTZONE: http://naming-server:8761/eureka
+  EUREKA.CLIENT.FETCHREGISTRY: "true"
+```
+
+
+## Step 16
 -  Step 16 - Getting Started with Docker Compose - Currency Exchange Microservice
+
+Docker Compose File - ../backup/docker-compose-01-ces.yaml
+
+## Step 17
 -  Step 17 - Running Eureka Naming Server with Docker Compose
+
+Docker Compose File - ../backup/docker-compose-02-naming-server.yaml
+
+## Step 18
 -  Step 18 - Running Currency Conversion Microservice with Docker Compose
+
+Docker Compose File - ../backup/docker-compose-03-currency-conversion.yaml
+
+## Step 19
 -  Step 19 - Running Spring Cloud API Gateway with Docker Compose
+
+Docker Compose File - ../backup/docker-compose-04-api-gateway.yaml
+
+## Step 20
 -  Step 20 - Running Zipkin with Docker Compose
--  Step 21 - Running Zipkin and RabbitMQ with Docker Compose
 
-
+Docker Compose File - ../backup/docker-compose-05-zipkin.yaml

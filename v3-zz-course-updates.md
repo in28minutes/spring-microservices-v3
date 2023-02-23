@@ -23,7 +23,7 @@ Lecture - 189. Step 21 - Running Zipkin and RabbitMQ with Docker Compose
 
 # Text Lectures
 
-## RECOMMEDED: Use Latest Spring Boot Version
+## RECOMMENDED: Use Latest Spring Boot Version
 
 Thank you so much for enrolling, I'm so excited for you to start your microservices journey!
 
