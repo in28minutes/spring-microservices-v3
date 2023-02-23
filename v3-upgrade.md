@@ -179,9 +179,9 @@ MANAGEMENT.ZIPKIN.TRACING.ENDPOINT: http://zipkin-server:9411/api/SB2/spans #SB3
 
 | Section | Image Name  | Spring Boot 2 | Spring Boot 3|
 | -------- | ------------- | ------------- | ------------- |
-| Docker | Currency Exchange | in28min/mmSB2-currency-exchange-service:0.0.1-SNAPSHOT | in28min/mmv3-currency-exchange-service:0.0.1-SNAPSHOT|
-| Docker | Currency Conversion  | in28min/mmSB2-currency-conversion-service:0.0.1-SNAPSHOT  |in28min/mmv3-currency-conversion-service:0.0.1-SNAPSHOT|
-| Docker | API Gateway  | in28min/mmSB2-api-gateway:0.0.1-SNAPSHOT  |in28min/mmv3-api-gateway:0.0.1-SNAPSHOT|
-| Docker | Naming Server | in28min/mmSB2-naming-server:0.0.1-SNAPSHOT  |in28min/mmv3-naming-server:0.0.1-SNAPSHOT|
-| Kubernetes | Currency Exchange | in28min/mmSB2-currency-exchange-service:0.0.11-SNAPSHOT (v11)<BR/> in28min/mmSB2-currency-exchange-service:0.0.12-SNAPSHOT (v12)| in28min/mmv3-currency-exchange-service:0.0.11-SNAPSHOT (v11)<BR/> in28min/mmv3-currency-exchange-service:0.0.12-SNAPSHOT (v12)|
-| Kubernetes | Currency Conversion | in28min/mmSB2-currency-conversion-service:0.0.11-SNAPSHOT (Uses CURRENCY_EXCHANGE_SERVICE_HOST)<BR/> in28min/mmSB2-currency-conversion-service:0.0.12-SNAPSHOT (Uses CURRENCY_EXCHANGE_URI)| in28min/mmv3-currency-conversion-service:0.0.11-SNAPSHOT (Uses CURRENCY_EXCHANGE_SERVICE_HOST)<BR/> in28min/mmv3-currency-conversion-service:0.0.12-SNAPSHOT (Uses CURRENCY_EXCHANGE_URI)|
+| Docker | Currency Exchange | in28min/mmv2-currency-exchange-service:0.0.1-SNAPSHOT | in28min/mmv3-currency-exchange-service:0.0.1-SNAPSHOT|
+| Docker | Currency Conversion  | in28min/mmv2-currency-conversion-service:0.0.1-SNAPSHOT  |in28min/mmv3-currency-conversion-service:0.0.1-SNAPSHOT|
+| Docker | API Gateway  | in28min/mmv2-api-gateway:0.0.1-SNAPSHOT  |in28min/mmv3-api-gateway:0.0.1-SNAPSHOT|
+| Docker | Naming Server | in28min/mmv2-naming-server:0.0.1-SNAPSHOT  |in28min/mmv3-naming-server:0.0.1-SNAPSHOT|
+| Kubernetes | Currency Exchange | in28min/mmv2-currency-exchange-service:0.0.11-SNAPSHOT (v11)<BR/> in28min/mmv2-currency-exchange-service:0.0.12-SNAPSHOT (v12)| in28min/mmv3-currency-exchange-service:0.0.11-SNAPSHOT (v11)<BR/> in28min/mmv3-currency-exchange-service:0.0.12-SNAPSHOT (v12)|
+| Kubernetes | Currency Conversion | in28min/mmv2-currency-conversion-service:0.0.11-SNAPSHOT (Uses CURRENCY_EXCHANGE_SERVICE_HOST)<BR/> in28min/mmv2-currency-conversion-service:0.0.12-SNAPSHOT (Uses CURRENCY_EXCHANGE_URI)| in28min/mmv3-currency-conversion-service:0.0.11-SNAPSHOT (Uses CURRENCY_EXCHANGE_SERVICE_HOST)<BR/> in28min/mmv3-currency-conversion-service:0.0.12-SNAPSHOT (Uses CURRENCY_EXCHANGE_URI)|
