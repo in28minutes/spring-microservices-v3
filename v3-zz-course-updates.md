@@ -115,3 +115,33 @@ Ranga
 - Remove mentions of RabbitMQ
 - Update Text Lectures
     - Change Links from V2 to V3
+
+
+# Announcement
+
+## Course Upgraded - Spring Boot 3 and OpenTelemetry
+
+Congratulations!
+
+The course is now completely upgraded to Spring Boot 3.
+
+#### What Has Changed
+
+Here is the list of code changes - https://github.com/in28minutes/spring-microservices-v3/blob/main/v3-upgrade.md
+
+#### What's New
+
+We added in Step By Step Guides for Docker and Kubernetes sections
+
+- Docker - https://github.com/in28minutes/spring-microservices-v3/tree/main/04.docker/01-step-by-step-changes
+- Kubernetes - https://github.com/in28minutes/spring-microservices-v3/tree/main/05.kubernetes
+
+#### Details
+
+Following are some of the lectures which are added/modified
+
+- Step 12 00 - Getting Started with Observability and OpenTelemetry
+- Step 12 - Connecting Currency Exchange Microservice with Zipkin
+- Step 13 - Connecting Currency Conversion Microservice _ API Gateway with Zipkin
+- Step 20 - Running Zipkin with Docker Compose
+
