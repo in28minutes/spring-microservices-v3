@@ -15,7 +15,7 @@ Current Directory : /Users/ranga/Ranga/git/00.courses/spring-microservices-v2/02
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.0.0-M4</version>
+		<version>3.0.6</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.in28minutes.rest.webservices</groupId>
@@ -63,7 +63,7 @@ Current Directory : /Users/ranga/Ranga/git/00.courses/spring-microservices-v2/02
 		<dependency>
 			<groupId>org.springdoc</groupId>
 			<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
-			<version>2.0.0-M4</version>
+			<version>2.0.0</version>
 		</dependency>
 
 		<dependency>
