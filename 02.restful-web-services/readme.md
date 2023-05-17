@@ -23,7 +23,7 @@ You will learn
 ### Our Recommendations
 
 - Use **latest version** of Java
-- Use **latest version** of "Eclipse IDE for Enterprise Java Developers"
+- Use **latest version** of "Eclipse IDE for Enterprise Java Developers" or Intellij IDE
 - Remember: Spring Boot 3+ works only with Java 17+
 
 ### Installing Java
