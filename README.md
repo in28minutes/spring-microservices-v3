@@ -21,7 +21,7 @@ docker run --detach --env MYSQL_ROOT_PASSWORD=dummypassword --env MYSQL_USER=soc
 ### Our Recommendations
 
 - Use **latest version** of Java
-- Use **latest version** of "Eclipse IDE for Enterprise Java Developers"
+- Use **latest version** of "Eclipse IDE for Enterprise Java Developers" or Intellij Community Edition
 - Remember: Spring Boot 3+ works only with Java 17+
 
 ### Installing Java
@@ -67,7 +67,7 @@ docker run --detach --env MYSQL_ROOT_PASSWORD=dummypassword --env MYSQL_USER=soc
 -  Step 09 - Introduction to Currency Conversion and Currency Exchange Microservices
 -  Step 10 - Setting up Currency Exchange Microservice
 -  Step 11 - Create a simple hard coded currency exchange service
--  Step 12 - Setting up Dynamic Port in the the Response
+-  Step 12 - Setting up Dynamic Port in the Response
 -  Step 13 - Configure JPA and Initialized Data
 -  Step 14 - Create a JPA Repository
 -  Step 15 - Setting up Currency Conversion Microservice
@@ -90,7 +90,7 @@ docker run --detach --env MYSQL_ROOT_PASSWORD=dummypassword --env MYSQL_USER=soc
 
 -  Step 00 - Match made in Heaven - Docker and Microservices
 -  Step 01 - Installing Docker - Docker
--  Step 02 - Your First Docker Usecase - Deploy a Spring Boot Application
+-  Step 02 - Your First Docker Use case - Deploy a Spring Boot Application
 -  Step 03 - Important Docker Concepts - Registry, Repository, Tag, Image and Container
 -  Step 04 - Playing with Docker Images and Containers
 -  Step 05 - Understanding Docker Architecture - Docker Client, Docker Engine
@@ -115,7 +115,7 @@ docker run --detach --env MYSQL_ROOT_PASSWORD=dummypassword --env MYSQL_USER=soc
 -  Step 00 - Docker, Kubernetes and Microservices - Made for each other
 -  Step 01 - Getting Started with Docker, Kubernetes and Google Kubernetes Engine
 -  Step 02 - Creating Google Cloud Account
--  Step 03 - Creating Kubernetes Cluster with Google Kubernete Engine (GKE)
+-  Step 03 - Creating Kubernetes Cluster with Google Kubernetes Engine (GKE)
 -  Step 04 - Review Kubernetes Cluster and Learn Few Fun Facts about Kubernetes
 -  Step 05 - Deploy Your First Spring Boot Application to Kubernetes Cluster
 -  Step 06 - Quick Look at Kubernetes Concepts - Pods, Replica Sets and Deployment
@@ -138,7 +138,7 @@ docker run --detach --env MYSQL_ROOT_PASSWORD=dummypassword --env MYSQL_USER=soc
 -  Step 23 - Understanding Centralized Configuration in Kubernetes - Config Maps
 -  Step 24 - Exploring Centralized Logging and Monitoring in GKE
 -  Step 25 - Exploring Microservices Deployments with Kubernetes
--  Step 26 - Configuring Liveness and Readiness Probes for Microservices with K8S
+-  Step 26 - Configuring Liveliness and Readiness Probes for Microservices with K8S
 -  Step 27 - Autoscaling Microservices with Kubernetes
 -  Step 28 - Delete Kubernetes Cluster and Thank You!
 
@@ -424,7 +424,7 @@ PROD -> PROD1
 ### Troubleshooting
 - Refer our TroubleShooting Guide - https://github.com/in28minutes/in28minutes-initiatives/tree/master/The-in28Minutes-TroubleshootingGuide-And-FAQ
 
-## Youtube Playlists - 500+ Videos
+## YouTube Playlists - 500+ Videos
 
 [Click here - 30+ Playlists with 500+ Videos on Spring, Spring Boot, REST, Microservices and the Cloud](https://www.youtube.com/user/rithustutorials/playlists?view=1&sort=lad&flow=list)
 
