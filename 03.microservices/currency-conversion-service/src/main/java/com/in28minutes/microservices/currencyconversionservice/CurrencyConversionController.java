@@ -48,12 +48,13 @@ public class CurrencyConversionController {
 				CurrencyConversion.class, uriVariables);
 		
 		CurrencyConversion currencyConversion = responseEntity.getBody();
-		
-		return new CurrencyConversion(currencyConversion.getId(), 
+
+		assert currencyConversion != null;
+		return new CurrencyConversion(currencyConversion.id(),
 				from, to, quantity, 
-				currencyConversion.getConversionMultiple(), 
-				quantity.multiply(currencyConversion.getConversionMultiple()), 
-				currencyConversion.getEnvironment()+ " " + "rest template");
+				currencyConversion.conversionMultiple(),
+				quantity.multiply(currencyConversion.conversionMultiple()),
+				currencyConversion.environment()+ " " + "rest template");
 		
 	}
 
@@ -66,11 +67,11 @@ public class CurrencyConversionController {
 				
 		CurrencyConversion currencyConversion = proxy.retrieveExchangeValue(from, to);
 		
-		return new CurrencyConversion(currencyConversion.getId(), 
+		return new CurrencyConversion(currencyConversion.id(),
 				from, to, quantity, 
-				currencyConversion.getConversionMultiple(), 
-				quantity.multiply(currencyConversion.getConversionMultiple()), 
-				currencyConversion.getEnvironment() + " " + "feign");
+				currencyConversion.conversionMultiple(),
+				quantity.multiply(currencyConversion.conversionMultiple()),
+				currencyConversion.environment() + " " + "feign");
 		
 	}
 
