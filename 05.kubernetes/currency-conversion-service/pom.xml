@@ -64,6 +64,11 @@
 	        <groupId>io.micrometer</groupId>
 	        <artifactId>micrometer-tracing-bridge-otel</artifactId>
 	    </dependency>
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<optional>true</optional>
+		</dependency>
 
 		<!-- CHANGE-KUBERNETES -->
 		<!--<dependency>
