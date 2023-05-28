@@ -1,33 +1,12 @@
 package com.in28minutes.microservices.limitsservice.bean;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+
+@Data
+// A shortcut for @ToString, @EqualsAndHashCode, @Getter on all fields, and @Setter on all non-final fields and @RequiredArgsConstructor
+@AllArgsConstructor // Generates constructors that take one argument for every field.
 public class Limits {
 	private int minimum;
 	private int maximum;
-
-	public Limits() {
-		super();
-	}
-
-	public Limits(int minimum, int maximum) {
-		super();
-		this.minimum = minimum;
-		this.maximum = maximum;
-	}
-
-	public int getMinimum() {
-		return minimum;
-	}
-
-	public void setMinimum(int minimum) {
-		this.minimum = minimum;
-	}
-
-	public int getMaximum() {
-		return maximum;
-	}
-
-	public void setMaximum(int maximum) {
-		this.maximum = maximum;
-	}
-
 }
