@@ -19,4 +19,11 @@ public class ErrorDetails {
 		return timestamp;
 	}
 
+	public String getMessage() {
+		return message;
+	}
+
+	public String getDetails() {
+		return details;
+	}
 }
