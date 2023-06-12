@@ -6,7 +6,7 @@ import com.fasterxml.jackson.annotation.JsonFilter;
 @JsonFilter("SomeBeanFilter")
 public class SomeBean {
 	private String field1;
-	
+
 	private String field2;
 
 	//@JsonIgnore
@@ -31,9 +31,9 @@ public class SomeBean {
 		return field3;
 	}
 
-	@Override
-	public String toString() {
-		return "SomeBean [field1=" + field1 + ", field2=" + field2 + ", field3=" + field3 + "]";
-	}
+    @Override
+    public String toString() {
+        return "SomeBean [field1=" + field1 + ", field2=" + field2 + ", field3=" + field3 + "]";
+    }
 
 }

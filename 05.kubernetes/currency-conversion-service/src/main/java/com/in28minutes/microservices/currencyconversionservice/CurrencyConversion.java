@@ -12,10 +12,10 @@ public class CurrencyConversion {
 	private String environment;
 
 	public CurrencyConversion() {
-		
+
 	}
-	
-	public CurrencyConversion(Long id, String from, String to, BigDecimal quantity, BigDecimal conversionMultiple, 
+
+	public CurrencyConversion(Long id, String from, String to, BigDecimal quantity, BigDecimal conversionMultiple,
 			BigDecimal totalCalculatedAmount, String environment) {
 		super();
 		this.id = id;
@@ -82,8 +82,8 @@ public class CurrencyConversion {
 	public void setEnvironment(String environment) {
 		this.environment = environment;
 	}
-	
-	
-	
+
+
+
 
 }
