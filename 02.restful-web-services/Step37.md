@@ -15,7 +15,7 @@ Current Directory : /Users/ranga/Ranga/git/00.courses/spring-microservices-v2/02
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.1.0</version>
+		<version>3.1.1</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.in28minutes.rest.webservices</groupId>
@@ -517,10 +517,12 @@ public class SpringSecurityConfiguration {
 				auth -> auth.anyRequest().authenticated()
 				);
 //		2) If a request is not authenticated, a web page is shown
-		http.httpBasic(withDefaults());
+		// http.httpBasic(withDefaults()); // Deprecated in SB 3.1.x
+        http.httpBasic(withDefaults()); // Starting from Spring Boot 3.1.x
 		
 //		3) CSRF -> POST, PUT
-		http.csrf().disable();
+        // http.csrf().disable(); // Deprecated in SB 3.1.x
+        http.csrf(csrf -> csrf.disable()); // Starting from Spring Boot 3.1.x
 
 		
 		return http.build();
