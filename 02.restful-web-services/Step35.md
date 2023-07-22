@@ -15,7 +15,7 @@ Current Directory : /Users/ranga/Ranga/git/00.courses/spring-microservices-v2/02
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.1.0</version>
+		<version>3.1.1</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.in28minutes.rest.webservices</groupId>
@@ -85,10 +85,20 @@ Current Directory : /Users/ranga/Ranga/git/00.courses/spring-microservices-v2/02
 			<artifactId>h2</artifactId>
 			<scope>runtime</scope>
 		</dependency> -->
+        
+		<!-- Deprecated below mysql dependency from Spring Boot:3.1.x -->
+        <!--
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 		</dependency>
+		-->
+		
+		<!-- Starting from Spring Boot 3.1.x -->
+        <dependency>
+			<groupId>com.mysql</groupId>
+            <artifactId>mysql-connector-j</artifactId>
+        </dependency>
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
