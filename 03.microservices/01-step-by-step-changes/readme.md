@@ -475,7 +475,7 @@ On Spring Initializr, choose:
 spring.application.name=currency-exchange
 server.port=8000
 ```
-
+- If you are Spring Boot >=2.5.0, You would need to configure this in application.properties `spring.config.import=optional:configserver:http://localhost:8888` 
 ---
 ### Step 11
 ---
