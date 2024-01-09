@@ -48,7 +48,7 @@
 	</parent>
 
 	<properties>
-	    <java.version>17</java.version>
+	    <java.version>21</java.version>
 	    <spring-cloud.version>2021.0.3</spring-cloud.version>
   	</properties>
 ```

@@ -15,7 +15,7 @@ Current Directory : /Users/ranga/Ranga/git/00.courses/spring-microservices-v2/02
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.1.1</version>
+		<version>3.2.1</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.in28minutes.rest.webservices</groupId>
@@ -24,7 +24,7 @@ Current Directory : /Users/ranga/Ranga/git/00.courses/spring-microservices-v2/02
 	<name>restful-web-services</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
-		<java.version>17</java.version>
+		<java.version>21</java.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -131,7 +131,7 @@ public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExce
 		ErrorDetails errorDetails = new ErrorDetails(LocalDateTime.now(), 
 				ex.getMessage(), request.getDescription(false));
 		
-		return new ResponseEntity<ErrorDetails>(errorDetails, HttpStatus.INTERNAL_SERVER_ERROR);
+		return new ResponseEntity<>(errorDetails, HttpStatus.INTERNAL_SERVER_ERROR);
 		
 	}
 
@@ -140,7 +140,7 @@ public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExce
 		ErrorDetails errorDetails = new ErrorDetails(LocalDateTime.now(), 
 				ex.getMessage(), request.getDescription(false));
 		
-		return new ResponseEntity<ErrorDetails>(errorDetails, HttpStatus.NOT_FOUND);
+		return new ResponseEntity<>(errorDetails, HttpStatus.NOT_FOUND);
 		
 	}
 
