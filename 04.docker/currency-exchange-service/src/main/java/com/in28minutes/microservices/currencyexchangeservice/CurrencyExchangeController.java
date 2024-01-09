@@ -20,14 +20,12 @@ public class CurrencyExchangeController {
 	private Environment environment;
 	
 	@GetMapping("/currency-exchange/from/{from}/to/{to}")
-	public CurrencyExchange retrieveExchangeValue(
-			@PathVariable String from,
+	public CurrencyExchange retrieveExchangeValue(@PathVariable String from,
 			@PathVariable String to) {
 		
 		logger.info("retrieveExchangeValue called with {} to {}", from, to);
 		
-		CurrencyExchange currencyExchange 
-					= repository.findByFromAndTo(from, to);
+		CurrencyExchange currencyExchange = repository.findByFromAndTo(from, to);
 		
 		if(currencyExchange ==null) {
 			throw new RuntimeException

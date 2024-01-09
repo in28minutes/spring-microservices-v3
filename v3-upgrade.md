@@ -12,17 +12,17 @@
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
     <!--<version>2.4.1</version> SB2-->
-    <version>3.0.6</version>
+    <version>3.2.1</version>
     <relativePath/> <!-- lookup parent from repository -->
 </parent>
 
 <properties>
 
     <!-- <java.version>15</java.version> SB2-->
-    <java.version>17</java.version>
+    <java.version>21</java.version>
 
     <!--<spring-cloud.version>2020.0.0</spring-cloud.version> SB2-->
-    <spring-cloud.version>2022.0.0</spring-cloud.version>
+    <spring-cloud.version>2023.0.0</spring-cloud.version>
 
 </properties>
 ```
