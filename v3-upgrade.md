@@ -172,7 +172,7 @@ public class CurrencyConversionController {
 ## Docker Compose Zipkin URL Configuration
 ```yaml
 #SPRING.ZIPKIN.BASEURL: http://zipkin-server:9411/ #SB2
-MANAGEMENT.ZIPKIN.TRACING.ENDPOINT: http://zipkin-server:9411/api/SB2/spans #SB3
+MANAGEMENT.ZIPKIN.TRACING.ENDPOINT: http://zipkin-server:9411/api/v2/spans #SB3
 ```
 
 ## Naming of Images
