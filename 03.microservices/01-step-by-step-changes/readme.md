@@ -166,6 +166,13 @@ On Spring Initializr, choose:
 	- DevTools
 	- Actuator
 	- Config Client
+- PackageName: com.in28minutes.microservices.limitsservice
+
+In `application.properties`, configure this:
+
+```properties
+spring.config.import=optional:configserver:http://localhost:8888
+```
 
 ---
 ### Step 02
@@ -1190,7 +1197,13 @@ public class CurrencyConversionController {
 }
 ```
 
+#### /currency-conversion-service/src/main/java/com/in28minutes/microservices/currencyconversionservice/CurrencyConversionServiceApplication.java Modified
 
+```java
+@SpringBootApplication
+@EnableFeignClients("com.in28minutes.microservices.currencyconversionservice")
+public class CurrencyConversionServiceApplication {
+```
 ---
 ### Eureka - Step 19 to 21
 ---
@@ -1259,6 +1272,16 @@ If you still have a problem, post a question including all the details:
 ---
 ### Step 19
 ---
+
+On Spring Initializr, choose:
+- Group Id: com.in28minutes.microservices
+- Artifact Id: naming-server
+- Dependencies
+	- DevTools
+	- Actuator
+	- Eureka Server
+- PackageName: com.in28minutes.microservices.namingserver
+
 
 Step 19 - Understand Naming Server and Setting up Eureka Naming Server
 
@@ -1379,7 +1402,8 @@ Discovery Disabled and Custom Routes Configured
 (2) Enable wiretap to see more details
 
 ```
-spring.cloud.gateway.httpserver.wiretap=true and spring.cloud.gateway.httpclient.wiretap=true
+spring.cloud.gateway.httpserver.wiretap=true
+spring.cloud.gateway.httpclient.wiretap=true
 ```
 
 
@@ -1475,9 +1499,8 @@ On Spring Initializr, choose:
 - Dependencies
 	- DevTools
 	- Actuator
-	- Config Client
 	- Eureka Discovery Client
-	- Gateway (Spring Cloud Routing)
+	- IMPORTANT! - Choose Reactive Gateway (NOT Just Gateway )
 
 #### /api-gateway/src/main/resources/application.properties Modified
 
