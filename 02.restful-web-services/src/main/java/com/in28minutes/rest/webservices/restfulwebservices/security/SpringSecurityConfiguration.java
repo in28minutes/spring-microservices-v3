@@ -1,6 +1,5 @@
 package com.in28minutes.rest.webservices.restfulwebservices.security;
 
-
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
