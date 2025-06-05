@@ -26,7 +26,7 @@ Current Directory : /in28Minutes/git/spring-microservices-v2/03.microservices
 
 	<properties>
 		<java.version>21</java.version>
-		<spring-cloud.version>2024.0.1</spring-cloud.version>
+		<spring-cloud.version>2025.0.0</spring-cloud.version>
 	</properties>
 
 	<dependencies>
@@ -161,7 +161,7 @@ public class NamingServerApplication {
 
 	<properties>
 		<java.version>21</java.version>
-		<spring-cloud.version>2024.0.1</spring-cloud.version>
+		<spring-cloud.version>2025.0.0</spring-cloud.version>
 	</properties>
 
 	<dependencies>
@@ -448,7 +448,7 @@ limits-service.maximum=996
 
 	<properties>
 		<java.version>21</java.version>
-		<spring-cloud.version>2024.0.1</spring-cloud.version>
+		<spring-cloud.version>2025.0.0</spring-cloud.version>
 	</properties>
 
 	<dependencies>
@@ -771,7 +771,7 @@ public interface CurrencyExchangeRepository
 
 	<properties>
 		<java.version>21</java.version>
-		<spring-cloud.version>2024.0.1</spring-cloud.version>
+		<spring-cloud.version>2025.0.0</spring-cloud.version>
 	</properties>
 
 	<dependencies>
@@ -897,7 +897,7 @@ public class SpringCloudConfigServerApplication {
 
 	<properties>
 		<java.version>21</java.version>
-		<spring-cloud.version>2024.0.1</spring-cloud.version>
+		<spring-cloud.version>2025.0.0</spring-cloud.version>
 	</properties>
 
 	<dependencies>

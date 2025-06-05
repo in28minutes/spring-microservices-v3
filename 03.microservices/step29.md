@@ -26,7 +26,7 @@ Current Directory : /in28Minutes/git/spring-microservices-v2/03.microservices
 
 	<properties>
 		<java.version>21</java.version>
-		<spring-cloud.version>2024.0.1</spring-cloud.version>
+		<spring-cloud.version>2025.0.0</spring-cloud.version>
 	</properties>
 
 	<dependencies>
@@ -161,7 +161,7 @@ public class NamingServerApplication {
 
 	<properties>
 		<java.version>21</java.version>
-		<spring-cloud.version>2024.0.1</spring-cloud.version>
+		<spring-cloud.version>2025.0.0</spring-cloud.version>
 	</properties>
 
 	<dependencies>
@@ -400,7 +400,7 @@ public class LimitsController {
 
 	<properties>
 		<java.version>21</java.version>
-		<spring-cloud.version>2024.0.1</spring-cloud.version>
+		<spring-cloud.version>2025.0.0</spring-cloud.version>
 	</properties>
 
 	<dependencies>
@@ -414,7 +414,7 @@ public class LimitsController {
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-gateway</artifactId>
+			<artifactId>spring-cloud-starter-gateway-server-webflux</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
@@ -658,7 +658,7 @@ limits-service.maximum=996
 
 	<properties>
 		<java.version>21</java.version>
-		<spring-cloud.version>2024.0.1</spring-cloud.version>
+		<spring-cloud.version>2025.0.0</spring-cloud.version>
 	</properties>
 
 	<dependencies>
@@ -1059,7 +1059,7 @@ public interface CurrencyExchangeRepository
 
 	<properties>
 		<java.version>21</java.version>
-		<spring-cloud.version>2024.0.1</spring-cloud.version>
+		<spring-cloud.version>2025.0.0</spring-cloud.version>
 	</properties>
 
 	<dependencies>
@@ -1185,7 +1185,7 @@ public class SpringCloudConfigServerApplication {
 
 	<properties>
 		<java.version>21</java.version>
-		<spring-cloud.version>2024.0.1</spring-cloud.version>
+		<spring-cloud.version>2025.0.0</spring-cloud.version>
 	</properties>
 
 	<dependencies>

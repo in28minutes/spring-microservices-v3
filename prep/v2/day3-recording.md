@@ -104,7 +104,7 @@ Current Directory : /Ranga/001.Notes/00.CoursePreparations/2020-12-Microservices
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.4.1</version>
+		<version>3.5.0</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.in28minutes.microservices</groupId>
@@ -114,8 +114,8 @@ Current Directory : /Ranga/001.Notes/00.CoursePreparations/2020-12-Microservices
 	<description>Demo project for Spring Boot</description>
 
 	<properties>
-		<java.version>15</java.version>
-		<spring-cloud.version>2020.0.0</spring-cloud.version>
+		<java.version>21</java.version>
+		<spring-cloud.version>2025.0.0</spring-cloud.version>
 	</properties>
 
 	<dependencies>
@@ -129,7 +129,7 @@ Current Directory : /Ranga/001.Notes/00.CoursePreparations/2020-12-Microservices
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-gateway</artifactId>
+			<artifactId>spring-cloud-starter-gateway-server-webflux</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
@@ -337,7 +337,7 @@ class ApiGatewayApplicationTests {
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.4.1</version>
+		<version>3.5.0</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.in28minutes.microservices</groupId>
@@ -347,8 +347,8 @@ class ApiGatewayApplicationTests {
 	<description>Demo project for Spring Boot</description>
 
 	<properties>
-		<java.version>15</java.version>
-		<spring-cloud.version>2020.0.0</spring-cloud.version>
+		<java.version>21</java.version>
+		<spring-cloud.version>2025.0.0</spring-cloud.version>
 	</properties>
 
 	<dependencies>
@@ -690,7 +690,7 @@ class CurrencyConversionServiceApplicationTests {
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.4.1</version>
+		<version>3.5.0</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.in28minutes.microservices</groupId>
@@ -700,8 +700,8 @@ class CurrencyConversionServiceApplicationTests {
 	<description>Demo project for Spring Boot</description>
 
 	<properties>
-		<java.version>15</java.version>
-		<spring-cloud.version>2020.0.0</spring-cloud.version>
+		<java.version>21</java.version>
+		<spring-cloud.version>2025.0.0</spring-cloud.version>
 	</properties>
 
 	<dependencies>
@@ -1324,7 +1324,7 @@ management.security.enabled=false
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.4.1</version>
+		<version>3.5.0</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.in28minutes.microservices</groupId>
@@ -1334,8 +1334,8 @@ management.security.enabled=false
 	<description>Demo project for Spring Boot Centralized Configuration</description>
 
 	<properties>
-		<java.version>15</java.version>
-		<spring-cloud.version>2020.0.0</spring-cloud.version>
+		<java.version>21</java.version>
+		<spring-cloud.version>2025.0.0</spring-cloud.version>
 	</properties>
 
 	<dependencies>
@@ -1600,7 +1600,7 @@ management.security.enabled=false
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.4.1</version>
+		<version>3.5.0</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.in28minutes.microservices</groupId>
@@ -1610,8 +1610,8 @@ management.security.enabled=false
 	<description>Demo project for Spring Boot</description>
 
 	<properties>
-		<java.version>15</java.version>
-		<spring-cloud.version>2020.0.0</spring-cloud.version>
+		<java.version>21</java.version>
+		<spring-cloud.version>2025.0.0</spring-cloud.version>
 	</properties>
 
 	<dependencies>
@@ -1741,7 +1741,7 @@ class NamingServerApplicationTests {
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.4.1</version>
+		<version>3.5.0</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.in28minutes.microservices</groupId>
@@ -1751,8 +1751,8 @@ class NamingServerApplicationTests {
 	<description>Centralized Configuration Server</description>
 
 	<properties>
-		<java.version>15</java.version>
-		<spring-cloud.version>2020.0.0</spring-cloud.version>
+		<java.version>21</java.version>
+		<spring-cloud.version>2025.0.0</spring-cloud.version>
 	</properties>
 
 	<dependencies>
