@@ -26,7 +26,7 @@ Current Directory : /Ranga/git/01.udemy-course-repos/spring-microservices-v2/03.
 
 	<properties>
 		<java.version>21</java.version>
-		<spring-cloud.version>2024.0.1</spring-cloud.version>
+		<spring-cloud.version>2025.0.0</spring-cloud.version>
 	</properties>
 
 	<dependencies>
@@ -40,7 +40,7 @@ Current Directory : /Ranga/git/01.udemy-course-repos/spring-microservices-v2/03.
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-gateway</artifactId>
+			<artifactId>spring-cloud-starter-gateway-server-webflux</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
@@ -266,7 +266,7 @@ class ApiGatewayApplicationTests {
 
 	<properties>
 		<java.version>21</java.version>
-		<spring-cloud.version>2024.0.1</spring-cloud.version>
+		<spring-cloud.version>2025.0.0</spring-cloud.version>
 	</properties>
 
 	<dependencies>
@@ -626,7 +626,7 @@ class CurrencyConversionServiceApplicationTests {
 
 	<properties>
 		<java.version>21</java.version>
-		<spring-cloud.version>2024.0.1</spring-cloud.version>
+		<spring-cloud.version>2025.0.0</spring-cloud.version>
 	</properties>
 
 	<dependencies>
@@ -1064,7 +1064,7 @@ http://localhost:8765/currency-conversion-new/from/USD/to/INR/quantity/10
 
 	<properties>
 		<java.version>21</java.version>
-		<spring-cloud.version>2024.0.1</spring-cloud.version>
+		<spring-cloud.version>2025.0.0</spring-cloud.version>
 	</properties>
 
 	<dependencies>
@@ -1303,7 +1303,7 @@ class LimitsServiceApplicationTests {
 
 	<properties>
 		<java.version>21</java.version>
-		<spring-cloud.version>2024.0.1</spring-cloud.version>
+		<spring-cloud.version>2025.0.0</spring-cloud.version>
 	</properties>
 
 	<dependencies>
@@ -1438,7 +1438,7 @@ class NamingServerApplicationTests {
 
 	<properties>
 		<java.version>21</java.version>
-		<spring-cloud.version>2024.0.1</spring-cloud.version>
+		<spring-cloud.version>2025.0.0</spring-cloud.version>
 	</properties>
 
 	<dependencies>

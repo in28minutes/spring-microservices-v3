@@ -12,7 +12,7 @@ import reactor.core.publisher.Mono;
 @Component
 public class LoggingFilter implements GlobalFilter {
 
-	private Logger logger = LoggerFactory.getLogger(LoggingFilter.class);
+	private final Logger logger = LoggerFactory.getLogger(LoggingFilter.class);
 	
 	@Override
 	public Mono<Void> filter(ServerWebExchange exchange, 
