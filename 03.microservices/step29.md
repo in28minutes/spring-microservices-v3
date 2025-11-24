@@ -15,7 +15,7 @@ Current Directory : /in28Minutes/git/spring-microservices-v2/03.microservices
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.5.0</version>
+		<version>4.0.0</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.in28minutes.microservices</groupId>
@@ -25,8 +25,8 @@ Current Directory : /in28Minutes/git/spring-microservices-v2/03.microservices
 	<description>Demo project for Spring Boot</description>
 
 	<properties>
-		<java.version>21</java.version>
-		<spring-cloud.version>2025.0.0</spring-cloud.version>
+		<java.version>25</java.version>
+		<spring-cloud.version>2025.1.0-RC1</spring-cloud.version>
 	</properties>
 
 	<dependencies>
@@ -51,7 +51,7 @@ Current Directory : /in28Minutes/git/spring-microservices-v2/03.microservices
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
+			<artifactId>spring-boot-starter-webmvc-test</artifactId>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
@@ -77,13 +77,7 @@ Current Directory : /in28Minutes/git/spring-microservices-v2/03.microservices
 		</plugins>
 	</build>
 
-	<repositories>
-		<repository>
-			<id>spring-milestones</id>
-			<name>Spring Milestones</name>
-			<url>https://repo.spring.io/milestone</url>
-		</repository>
-	</repositories>
+
 
 </project>
 ```
@@ -150,7 +144,7 @@ public class NamingServerApplication {
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.5.0</version>
+		<version>4.0.0</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.in28minutes.microservices</groupId>
@@ -160,8 +154,8 @@ public class NamingServerApplication {
 	<description>Demo project for Spring Boot Centralized Configuration</description>
 
 	<properties>
-		<java.version>21</java.version>
-		<spring-cloud.version>2025.0.0</spring-cloud.version>
+		<java.version>25</java.version>
+		<spring-cloud.version>2025.1.0-RC1</spring-cloud.version>
 	</properties>
 
 	<dependencies>
@@ -171,7 +165,7 @@ public class NamingServerApplication {
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
+			<artifactId>spring-boot-starter-webmvc</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
@@ -186,7 +180,7 @@ public class NamingServerApplication {
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
+			<artifactId>spring-boot-starter-webmvc-test</artifactId>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
@@ -212,13 +206,7 @@ public class NamingServerApplication {
 		</plugins>
 	</build>
 
-	<repositories>
-		<repository>
-			<id>spring-milestones</id>
-			<name>Spring Milestones</name>
-			<url>https://repo.spring.io/milestone</url>
-		</repository>
-	</repositories>
+
 
 </project>
 ```
@@ -389,7 +377,7 @@ public class LimitsController {
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.5.0</version>
+		<version>4.0.0</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.in28minutes.microservices</groupId>
@@ -399,8 +387,8 @@ public class LimitsController {
 	<description>Demo project for Spring Boot</description>
 
 	<properties>
-		<java.version>21</java.version>
-		<spring-cloud.version>2025.0.0</spring-cloud.version>
+		<java.version>25</java.version>
+		<spring-cloud.version>2025.1.0-RC1</spring-cloud.version>
 	</properties>
 
 	<dependencies>
@@ -429,7 +417,7 @@ public class LimitsController {
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
+			<artifactId>spring-boot-starter-webmvc-test</artifactId>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
@@ -455,13 +443,7 @@ public class LimitsController {
 		</plugins>
 	</build>
 
-	<repositories>
-		<repository>
-			<id>spring-milestones</id>
-			<name>Spring Milestones</name>
-			<url>https://repo.spring.io/milestone</url>
-		</repository>
-	</repositories>
+
 
 </project>
 ```
@@ -647,7 +629,7 @@ limits-service.maximum=996
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.5.0</version>
+		<version>4.0.0</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.in28minutes.microservices</groupId>
@@ -657,8 +639,8 @@ limits-service.maximum=996
 	<description>Demo project for Spring Boot</description>
 
 	<properties>
-		<java.version>21</java.version>
-		<spring-cloud.version>2025.0.0</spring-cloud.version>
+		<java.version>25</java.version>
+		<spring-cloud.version>2025.1.0-RC1</spring-cloud.version>
 	</properties>
 
 	<dependencies>
@@ -668,7 +650,7 @@ limits-service.maximum=996
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
+			<artifactId>spring-boot-starter-webmvc</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -707,7 +689,7 @@ limits-service.maximum=996
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
+			<artifactId>spring-boot-starter-webmvc-test</artifactId>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
@@ -733,13 +715,7 @@ limits-service.maximum=996
 		</plugins>
 	</build>
 
-	<repositories>
-		<repository>
-			<id>spring-milestones</id>
-			<name>Spring Milestones</name>
-			<url>https://repo.spring.io/milestone</url>
-		</repository>
-	</repositories>
+
 
 </project>
 ```
@@ -1048,7 +1024,7 @@ public interface CurrencyExchangeRepository
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.5.0</version>
+		<version>4.0.0</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.in28minutes.microservices</groupId>
@@ -1058,8 +1034,8 @@ public interface CurrencyExchangeRepository
 	<description>Centralized Configuration Server</description>
 
 	<properties>
-		<java.version>21</java.version>
-		<spring-cloud.version>2025.0.0</spring-cloud.version>
+		<java.version>25</java.version>
+		<spring-cloud.version>2025.1.0-RC1</spring-cloud.version>
 	</properties>
 
 	<dependencies>
@@ -1076,7 +1052,7 @@ public interface CurrencyExchangeRepository
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
+			<artifactId>spring-boot-starter-webmvc-test</artifactId>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
@@ -1102,13 +1078,7 @@ public interface CurrencyExchangeRepository
 		</plugins>
 	</build>
 
-	<repositories>
-		<repository>
-			<id>spring-milestones</id>
-			<name>Spring Milestones</name>
-			<url>https://repo.spring.io/milestone</url>
-		</repository>
-	</repositories>
+
 
 </project>
 ```
@@ -1174,7 +1144,7 @@ public class SpringCloudConfigServerApplication {
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.5.0</version>
+		<version>4.0.0</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.in28minutes.microservices</groupId>
@@ -1184,8 +1154,8 @@ public class SpringCloudConfigServerApplication {
 	<description>Demo project for Spring Boot</description>
 
 	<properties>
-		<java.version>21</java.version>
-		<spring-cloud.version>2025.0.0</spring-cloud.version>
+		<java.version>25</java.version>
+		<spring-cloud.version>2025.1.0-RC1</spring-cloud.version>
 	</properties>
 
 	<dependencies>
@@ -1195,7 +1165,7 @@ public class SpringCloudConfigServerApplication {
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
+			<artifactId>spring-boot-starter-webmvc</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
@@ -1219,7 +1189,7 @@ public class SpringCloudConfigServerApplication {
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
+			<artifactId>spring-boot-starter-webmvc-test</artifactId>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
@@ -1245,13 +1215,7 @@ public class SpringCloudConfigServerApplication {
 		</plugins>
 	</build>
 
-	<repositories>
-		<repository>
-			<id>spring-milestones</id>
-			<name>Spring Milestones</name>
-			<url>https://repo.spring.io/milestone</url>
-		</repository>
-	</repositories>
+
 
 </project>
 ```

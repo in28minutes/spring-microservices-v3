@@ -43,13 +43,13 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.7.3</version>
+		<version>4.0.0</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 
 	<properties>
-	    <java.version>21</java.version>
-	    <spring-cloud.version>2021.0.3</spring-cloud.version>
+	    <java.version>25</java.version>
+	    <spring-cloud.version>2025.1.0-RC1</spring-cloud.version>
   	</properties>
 ```
 
@@ -1040,6 +1040,24 @@ public class CurrencyConversion {
 
 Step 17 - Invoking Currency Exchange Microservice from Currency Conversion Microservice
 
+> Starting with **Spring Boot 4**, the recommended way to call external APIs is to use **RestClient**, as **RestTemplate** is planned for deprecation.
+
+To use **RestClient**, you need to add the **HTTP Client** starter in `start.spring.io`.
+
+Follow these steps:
+
+1. Open **start.spring.io**
+2. Click **Add Dependencies**
+3. Type `client` in the search box
+4. Select **HTTP Client** from the list
+
+```xml
+<dependency>
+  <groupId>org.springframework.boot</groupId>
+  <artifactId>spring-boot-starter-restclient</artifactId>
+</dependency>
+```
+
 #### /currency-conversion-service/src/main/java/com/in28minutes/microservices/currencyconversionservice/CurrencyConversionController.java Modified
 
 ```java
@@ -1052,11 +1070,22 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.client.RestTemplate;
+// import org.springframework.web.client.RestTemplate;
+
+@Configuration(proxyBeanMethods = false)
+class RestClientConfiguration {
+
+    @Bean
+    RestClient restClient(RestClient.Builder builder) {
+        return builder.build();
+    }
+}
 
 @RestController
 public class CurrencyConversionController {
-	
+
+    @Autowired
+    private RestClient restClient;
 	
 	@GetMapping("/currency-conversion/from/{from}/to/{to}/quantity/{quantity}")
 	public CurrencyConversion calculateCurrencyConversion(
@@ -1068,18 +1097,29 @@ public class CurrencyConversionController {
 		HashMap<String, String> uriVariables = new HashMap<>();
 		uriVariables.put("from",from);
 		uriVariables.put("to",to);
+
+        CurrencyConversion currencyConversion = restClient.get()
+                .uri("http://localhost:8000/currency-exchange/from/{from}/to/{to}", uriVariables)
+                .retrieve()
+                .body(CurrencyConversion.class);
+
+        return new CurrencyConversion(currencyConversion.getId(),
+                from, to, quantity,
+                currencyConversion.getConversionMultiple(),
+                quantity.multiply(currencyConversion.getConversionMultiple()),
+                currencyConversion.getEnvironment()+ " " + "rest client");
 		
-		ResponseEntity<CurrencyConversion> responseEntity = new RestTemplate().getForEntity
-		("http://localhost:8000/currency-exchange/from/{from}/to/{to}", 
-				CurrencyConversion.class, uriVariables);
-		
-		CurrencyConversion currencyConversion = responseEntity.getBody();
-		
-		return new CurrencyConversion(currencyConversion.getId(), 
-				from, to, quantity, 
-				currencyConversion.getConversionMultiple(), 
-				quantity.multiply(currencyConversion.getConversionMultiple()), 
-				currencyConversion.getEnvironment()+ " " + "rest template");
+//		ResponseEntity<CurrencyConversion> responseEntity = new RestTemplate().getForEntity
+//		("http://localhost:8000/currency-exchange/from/{from}/to/{to}", 
+//				CurrencyConversion.class, uriVariables);
+//		
+//		CurrencyConversion currencyConversion = responseEntity.getBody();
+//		
+//		return new CurrencyConversion(currencyConversion.getId(), 
+//				from, to, quantity, 
+//				currencyConversion.getConversionMultiple(), 
+//				quantity.multiply(currencyConversion.getConversionMultiple()), 
+//				currencyConversion.getEnvironment()+ " " + "rest template");
 		
 	}
 
@@ -1684,10 +1724,15 @@ Changes for:
 
 #### /currency-exchange-service/pom.xml Modified
 New Lines
+
 ```xml
+      <properties>
+       <spring-aop.version>4.0.0-M2</spring-aop.version>
+      </properties>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-aop</artifactId>
+            <version>${spring-aop.version}</version>
 		</dependency>
 
 		<dependency>
