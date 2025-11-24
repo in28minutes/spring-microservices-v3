@@ -1042,6 +1042,8 @@ Step 17 - Invoking Currency Exchange Microservice from Currency Conversion Micro
 
 > Starting with **Spring Boot 4**, the recommended way to call external APIs is to use **RestClient**, as **RestTemplate** is planned for deprecation.
 
+Reference Link: https://spring.io/blog/2025/09/30/the-state-of-http-clients-in-spring#the-future-of-http-clients-in-spring
+
 To use **RestClient**, you need to add the **HTTP Client** starter in `start.spring.io`.
 
 Follow these steps:
