@@ -199,21 +199,50 @@ Have a little bit of patience. Wait for 5-10 minutes if you do not see traces!
 ### Additional Changes For Spring Boot 3+
 
 pom.xml
+```xml
+<!-- Enables tracing of REST API calls made using Feign-->
+<dependency>
+    <groupId>io.github.openfeign</groupId>
+    <artifactId>feign-micrometer</artifactId>
+</dependency>
 ```
-		<!-- Enables tracing of REST API calls made using Feign-->
-		<dependency>
-			<groupId>io.github.openfeign</groupId>
-			<artifactId>feign-micrometer</artifactId>
-		</dependency>
+> Starting with **Spring Boot 4**, the recommended way to call external APIs is to use **RestClient**, as **RestTemplate** is planned for deprecation.
+
+Reference Link: https://spring.io/blog/2025/09/30/the-state-of-http-clients-in-spring#the-future-of-http-clients-in-spring
+
+To use **RestClient**, you need to add the **HTTP Client** starter in `start.spring.io`.
+
+Follow these steps:
+
+1. Open **start.spring.io**
+2. Click **Add Dependencies**
+3. Type `client` in the search box
+4. Select **HTTP Client** from the list
+
+```xml
+<dependency>
+  <groupId>org.springframework.boot</groupId>
+  <artifactId>spring-boot-starter-restclient</artifactId>
+</dependency>
 ```
 
 CurrencyConversionController.java
 ```
+// Enable for Spring Boot 3.0.x
+//@Configuration(proxyBeanMethods = false)
+//class RestTemplateConfiguration {
+//
+//    @Bean
+//    RestTemplate restTemplate(RestTemplateBuilder builder) {
+//        return builder.build();
+//    }
+//}
+
 @Configuration(proxyBeanMethods = false)
-class RestTemplateConfiguration {
-    
+class RestClientConfiguration {
+
     @Bean
-    RestTemplate restTemplate(RestTemplateBuilder builder) {
+    RestClient restClient(RestClient.Builder builder) {
         return builder.build();
     }
 }
@@ -224,8 +253,12 @@ public class CurrencyConversionController {
 	@Autowired
 	private CurrencyExchangeProxy proxy;
 	
-	@Autowired
-	private RestTemplate restTemplate;
+    // Uncomment for Spring Boot 3.0.x
+//	@Autowired
+//	private RestTemplate restTemplate;
+
+    @Autowired
+    private RestClient restClient;
 
 ```
 
