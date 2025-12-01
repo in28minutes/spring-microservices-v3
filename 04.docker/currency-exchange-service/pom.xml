@@ -17,6 +17,7 @@
 	<properties>
 		<java.version>25</java.version>
 		<spring-cloud.version>2025.1.0</spring-cloud.version>
+        <spring-aop.version>4.0.0-M2</spring-aop.version>
 	</properties>
 
 	<dependencies>
@@ -89,6 +90,7 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-aop</artifactId>
+            <version>${spring-aop.version}</version>
 		</dependency>
 
 		<dependency>
