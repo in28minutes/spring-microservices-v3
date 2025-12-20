@@ -4,14 +4,15 @@ import java.math.BigDecimal;
 import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.web.client.RestTemplateBuilder;
+// import org.springframework.boot.web.client.RestTemplateBuilder; // Enable for Spring Boot 3.0.x
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.ResponseEntity;
+// import org.springframework.http.ResponseEntity; // Enable for Spring Boot 3.0.x
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.client.RestTemplate;
+import org.springframework.web.client.RestClient; // Enable for Spring Boot 4.0.x
+// import org.springframework.web.client.RestTemplate; // Enable for Spring Boot 3.0.x
 
 // Enable for Spring Boot 3.0.x
 //@Configuration(proxyBeanMethods = false)
@@ -27,7 +28,7 @@ import org.springframework.web.client.RestTemplate;
 class RestClientConfiguration {
 
     @Bean
-    RestClient restClient(RestClient.Builder builder) {
+	RestClient restClient(RestClient.Builder builder) {
         return builder.build();
     }
 }
