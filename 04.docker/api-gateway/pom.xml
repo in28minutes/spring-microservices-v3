@@ -43,10 +43,10 @@
 	
 	    <!-- Micrometer - Vendor-neutral application observability facade. Instrument your JVM-based application code without vendor lock-in.  Observation (Metrics & Logs) + Tracing.-->
 	
-	    <dependency>
-	        <groupId>io.micrometer</groupId>
-	        <artifactId>micrometer-observation</artifactId>
-	    </dependency>
+<!--	    <dependency>-->
+<!--	        <groupId>io.micrometer</groupId>-->
+<!--	        <artifactId>micrometer-observation</artifactId>-->
+<!--	    </dependency>-->
 	
 	    <!-- Brave as Bridge -->
 	
@@ -65,21 +65,40 @@
 	    <!-- Open Telemetry as Bridge -->
 	    <!-- Open Telemetry - Simplified Observability (metrics, logs, and traces) -->
 	
-	    <dependency>
-	        <groupId>io.micrometer</groupId>
-	        <artifactId>micrometer-tracing-bridge-otel</artifactId>
-	    </dependency>
-	
-	    <dependency>
-	        <groupId>io.opentelemetry</groupId>
-	        <artifactId>opentelemetry-exporter-zipkin</artifactId>
-	    </dependency>
+<!--	    <dependency>-->
+<!--	        <groupId>io.micrometer</groupId>-->
+<!--	        <artifactId>micrometer-tracing-bridge-otel</artifactId>-->
+<!--	    </dependency>-->
+<!--	-->
+<!--	    <dependency>-->
+<!--	        <groupId>io.opentelemetry</groupId>-->
+<!--	        <artifactId>opentelemetry-exporter-zipkin</artifactId>-->
+<!--	    </dependency>-->
+
+		<!-- In Spring Boot 4 -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-micrometer-tracing-brave</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-zipkin</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>io.micrometer</groupId>
+			<artifactId>micrometer-tracing-bridge-brave</artifactId>
+		</dependency>
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
 			<scope>runtime</scope>
 			<optional>true</optional>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-micrometer-tracing-test</artifactId>
+			<scope>test</scope>
 		</dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -88,7 +107,12 @@
         </dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
+			<artifactId>spring-boot-starter-zipkin-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-webmvc-test</artifactId>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>

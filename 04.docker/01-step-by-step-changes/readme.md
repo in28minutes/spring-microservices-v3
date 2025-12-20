@@ -110,10 +110,49 @@ docker run -p 9411:9411 openzipkin/zipkin:2.23
 
 -  Step 12 - Connecting Currency Exchange Microservice with Zipkin
 
+[!Important]
+- In start.spring.io, please add the following dependencies
+  - actuator
+  - zipkin
 
 ### pom.xml
 
 ```xml
+
+<!-- In Spring Boot 4 -->
+<dependency>
+	<groupId>org.springframework.boot</groupId>
+	<artifactId>spring-boot-starter-actuator</artifactId>
+</dependency>
+<dependency>
+	<groupId>org.springframework.boot</groupId>
+	<artifactId>spring-boot-micrometer-tracing-brave</artifactId>
+</dependency>
+<dependency>
+   <groupId>org.springframework.boot</groupId>
+   <artifactId>spring-boot-starter-zipkin</artifactId>
+</dependency>
+<dependency>
+   <groupId>io.micrometer</groupId>
+   <artifactId>micrometer-tracing-bridge-brave</artifactId>
+</dependency>
+
+<!-- testing dependencies -->
+<dependency>
+   <groupId>org.springframework.boot</groupId>
+   <artifactId>spring-boot-micrometer-tracing-test</artifactId>
+   <scope>test</scope>
+</dependency>
+<dependency>
+   <groupId>org.springframework.boot</groupId>
+   <artifactId>spring-boot-starter-actuator-test</artifactId>
+   <scope>test</scope>
+</dependency>
+<dependency>
+   <groupId>org.springframework.boot</groupId>
+   <artifactId>spring-boot-starter-zipkin-test</artifactId>
+   <scope>test</scope>
+</dependency>
 
 <!-- Spring Boot 2 Tracing -->
 
@@ -141,10 +180,10 @@ docker run -p 9411:9411 openzipkin/zipkin:2.23
 
 <!-- Micrometer - Vendor-neutral application observability facade. Instrument your JVM-based application code without vendor lock-in.  Observation (Metrics & Logs) + Tracing.-->
 
-<dependency>
-	<groupId>io.micrometer</groupId>
-	<artifactId>micrometer-observation</artifactId>
-</dependency>
+<!--<dependency>-->
+<!--	<groupId>io.micrometer</groupId>-->
+<!--	<artifactId>micrometer-observation</artifactId>-->
+<!--</dependency>-->
 
 <!-- Brave as Bridge -->
 
@@ -163,15 +202,15 @@ docker run -p 9411:9411 openzipkin/zipkin:2.23
 <!-- Open Telemetry as Bridge -->
 <!-- Open Telemetry - Simplified Observability (metrics, logs, and traces) -->
 
-<dependency>
-	<groupId>io.micrometer</groupId>
-	<artifactId>micrometer-tracing-bridge-otel</artifactId>
-</dependency>
+<!--<dependency>-->
+<!--	<groupId>io.micrometer</groupId>-->
+<!--	<artifactId>micrometer-tracing-bridge-otel</artifactId>-->
+<!--</dependency>-->
 
-<dependency>
-    <groupId>io.opentelemetry</groupId>
-    <artifactId>opentelemetry-exporter-zipkin</artifactId>
-</dependency>
+<!--<dependency>-->
+<!--    <groupId>io.opentelemetry</groupId>-->
+<!--    <artifactId>opentelemetry-exporter-zipkin</artifactId>-->
+<!--</dependency>-->
 
 ```
 
@@ -185,7 +224,8 @@ logging.pattern.level=%5p [${spring.application.name:},%X{traceId:-},%X{spanId:-
 
 # IF YOU WANT TO RUN ZIPKIN ON DIFFERENT URL
 ##spring.zipkin.baseUrl=http://localhost:9411/
-
+management.tracing.export.zipkin.endpoint=http://localhost:9411/api/v2/spans
+management.tracing.export.zipkin.enabled=true
 ```
 
 ## Step 13

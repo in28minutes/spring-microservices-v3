@@ -3,7 +3,7 @@
 - Step 00 - Docker, Kubernetes and Microservices - Made for each other
 - Step 01 - Getting Started with Docker, Kubernetes and Google Kubernetes Engine
 - Step 02 - Creating Google Cloud Account
-- Step 03 - Creating Kubernetes Cluster with Google Kubernete Engine (GKE)
+- Step 03 - Creating Kubernetes Cluster with Google Kubernetes Engine (GKE)
 - Step 04 - Review Kubernetes Cluster and Learn Few Fun Facts about Kubernetes
 
 ## Step 05 

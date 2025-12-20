@@ -17,11 +17,10 @@
 	<properties>
 		<java.version>25</java.version>
 		<spring-cloud.version>2025.1.0</spring-cloud.version>
-        <spring-aop.version>4.0.0-M2</spring-aop.version>
+<!--        <spring-aop.version>4.0.0-M2</spring-aop.version>-->
 	</properties>
 
 	<dependencies>
-		
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-actuator</artifactId>
@@ -38,64 +37,85 @@
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
 		</dependency>
-
-<!-- 		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-config</artifactId>
+		<!-- In Spring Boot 4 -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-micrometer-tracing-brave</artifactId>
 		</dependency>
- -->
-	    <!-- Spring Boot 3+ Tracing -->
-	
-	    <!-- Micrometer > Brave/OpenTelemetry > Zipkin -->
-	
-	    <!-- Micrometer - Vendor-neutral application observability facade. Instrument your JVM-based application code without vendor lock-in.  Observation (Metrics & Logs) + Tracing.-->
-	
-	    <dependency>
-	        <groupId>io.micrometer</groupId>
-	        <artifactId>micrometer-observation</artifactId>
-	    </dependency>
-	
-	    <!-- Brave as Bridge -->
-	
-	    <!--
-	    <dependency>
-	        <groupId>io.micrometer</groupId>
-	        <artifactId>micrometer-tracing-bridge-brave</artifactId>
-	    </dependency>
-	
-	    <dependency>
-	        <groupId>io.zipkin.reporter2</groupId
-	        <artifactId>zipkin-reporter-brave</artifactId>
-	    </dependency>
-	    -->
-	
-	    <!-- Open Telemetry as Bridge -->
-	    <!-- Open Telemetry - Simplified Observability (metrics, logs, and traces) -->
-	
-	    <dependency>
-	        <groupId>io.micrometer</groupId>
-	        <artifactId>micrometer-tracing-bridge-otel</artifactId>
-	    </dependency>
-	
-	    <dependency>
-	        <groupId>io.opentelemetry</groupId>
-	        <artifactId>opentelemetry-exporter-zipkin</artifactId>
-	    </dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-zipkin</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>io.micrometer</groupId>
+			<artifactId>micrometer-tracing-bridge-brave</artifactId>
+		</dependency>
+
+<!--&lt;!&ndash; 		<dependency>-->
+<!--			<groupId>org.springframework.cloud</groupId>-->
+<!--			<artifactId>spring-cloud-starter-config</artifactId>-->
+<!--		</dependency>-->
+<!-- &ndash;&gt;-->
+<!--	    &lt;!&ndash; Spring Boot 3+ Tracing &ndash;&gt;-->
+<!--	-->
+<!--	    &lt;!&ndash; Micrometer > Brave/OpenTelemetry > Zipkin &ndash;&gt;-->
+<!--	-->
+<!--	    &lt;!&ndash; Micrometer - Vendor-neutral application observability facade. Instrument your JVM-based application code without vendor lock-in.  Observation (Metrics & Logs) + Tracing.&ndash;&gt;-->
+<!--	-->
+<!--	    <dependency>-->
+<!--	        <groupId>io.micrometer</groupId>-->
+<!--	        <artifactId>micrometer-observation</artifactId>-->
+<!--	    </dependency>-->
+<!--	-->
+<!--	    &lt;!&ndash; Brave as Bridge &ndash;&gt;-->
+<!--	-->
+
+<!--&lt;!&ndash;	    <dependency>&ndash;&gt;-->
+<!--&lt;!&ndash;	        <groupId>io.micrometer</groupId>&ndash;&gt;-->
+<!--&lt;!&ndash;	        <artifactId>micrometer-tracing-bridge-brave</artifactId>&ndash;&gt;-->
+<!--&lt;!&ndash;	    </dependency>&ndash;&gt;-->
+<!--&lt;!&ndash;	&ndash;&gt;-->
+<!--&lt;!&ndash;	    <dependency>&ndash;&gt;-->
+<!--&lt;!&ndash;	        <groupId>io.zipkin.reporter2</groupId>&ndash;&gt;-->
+<!--&lt;!&ndash;	        <artifactId>zipkin-reporter-brave</artifactId>&ndash;&gt;-->
+<!--&lt;!&ndash;	    </dependency>&ndash;&gt;-->
+
+<!--	-->
+<!--	    &lt;!&ndash; Open Telemetry as Bridge &ndash;&gt;-->
+<!--	    &lt;!&ndash; Open Telemetry - Simplified Observability (metrics, logs, and traces) &ndash;&gt;-->
+
+<!--	    <dependency>-->
+<!--	        <groupId>io.micrometer</groupId>-->
+<!--	        <artifactId>micrometer-tracing-bridge-otel</artifactId>-->
+<!--	    </dependency>-->
+
+<!--	    <dependency>-->
+<!--	        <groupId>io.opentelemetry</groupId>-->
+<!--	        <artifactId>opentelemetry-exporter-zipkin</artifactId>-->
+<!--	    </dependency>-->
 	    
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
 		</dependency>
 
+		<!-- For Spring Boot 3 -->
+<!--		<dependency>-->
+<!--			<groupId>org.springframework.boot</groupId>-->
+<!--			<artifactId>spring-boot-starter-aop</artifactId>-->
+<!--            <version>${spring-aop.version}</version>-->
+<!--		</dependency>-->
+
+		<!-- For Spring Boot 4 aop has been renamed to aspectj -->
+		<!--https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-4.0-Migration-Guide#aop-starter-pom -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-aop</artifactId>
-            <version>${spring-aop.version}</version>
+			<artifactId>spring-boot-starter-aspectj</artifactId>
 		</dependency>
 
 		<dependency>
 			<groupId>io.github.resilience4j</groupId>
-			<artifactId>resilience4j-spring-boot2</artifactId>
+			<artifactId>resilience4j-spring-boot3</artifactId> <!-- changed from spring-boot2 to spring-boot3 -->
 		</dependency>
 
 		<dependency>
