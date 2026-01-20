@@ -741,6 +741,10 @@ New Lines
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-h2console</artifactId>
+		</dependency>
 ```
 
 #### /currency-exchange-service/src/main/java/com/in28minutes/microservices/currencyexchangeservice/CurrencyExchange.java Modified
@@ -1040,18 +1044,9 @@ public class CurrencyConversion {
 
 Step 17 - Invoking Currency Exchange Microservice from Currency Conversion Microservice
 
-> Starting with **Spring Boot 4**, the recommended way to call external APIs is to use **RestClient**, as **RestTemplate** is planned for deprecation.
+Alternate Future Safe Approach: RestClient
 
 Reference Link: https://spring.io/blog/2025/09/30/the-state-of-http-clients-in-spring#the-future-of-http-clients-in-spring
-
-To use **RestClient**, you need to add the **HTTP Client** starter in `start.spring.io`.
-
-Follow these steps:
-
-1. Open **start.spring.io**
-2. Click **Add Dependencies**
-3. Type `client` in the search box
-4. Select **HTTP Client** from the list
 
 ```xml
 <dependency>
@@ -1072,8 +1067,43 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
-// import org.springframework.web.client.RestTemplate;
+import org.springframework.web.client.RestTemplate;
 
+@RestController
+public class CurrencyConversionController {
+	
+	
+	@GetMapping("/currency-conversion/from/{from}/to/{to}/quantity/{quantity}")
+	public CurrencyConversion calculateCurrencyConversion(
+			@PathVariable String from,
+			@PathVariable String to,
+			@PathVariable BigDecimal quantity
+			) {
+		
+		HashMap<String, String> uriVariables = new HashMap<>();
+		uriVariables.put("from",from);
+		uriVariables.put("to",to);
+		
+		ResponseEntity<CurrencyConversion> responseEntity = new RestTemplate().getForEntity
+		("http://localhost:8000/currency-exchange/from/{from}/to/{to}", 
+				CurrencyConversion.class, uriVariables);
+		
+		CurrencyConversion currencyConversion = responseEntity.getBody();
+		
+		return new CurrencyConversion(currencyConversion.getId(), 
+				from, to, quantity, 
+				currencyConversion.getConversionMultiple(), 
+				quantity.multiply(currencyConversion.getConversionMultiple()), 
+				currencyConversion.getEnvironment()+ " " + "rest template");
+		
+	}
+
+}
+```
+
+#### Alternate Future Safe Approach: RestClient
+
+```java
 @Configuration(proxyBeanMethods = false)
 class RestClientConfiguration {
 
@@ -1110,24 +1140,11 @@ public class CurrencyConversionController {
                 currencyConversion.getConversionMultiple(),
                 quantity.multiply(currencyConversion.getConversionMultiple()),
                 currencyConversion.getEnvironment()+ " " + "rest client");
-		
-//		ResponseEntity<CurrencyConversion> responseEntity = new RestTemplate().getForEntity
-//		("http://localhost:8000/currency-exchange/from/{from}/to/{to}", 
-//				CurrencyConversion.class, uriVariables);
-//		
-//		CurrencyConversion currencyConversion = responseEntity.getBody();
-//		
-//		return new CurrencyConversion(currencyConversion.getId(), 
-//				from, to, quantity, 
-//				currencyConversion.getConversionMultiple(), 
-//				quantity.multiply(currencyConversion.getConversionMultiple()), 
-//				currencyConversion.getEnvironment()+ " " + "rest template");
-		
+				
 	}
 
 }
 ```
-
 
 ---
 ### Debugging problems with Feign
@@ -1722,6 +1739,14 @@ Changes for:
 -  Step 27 - Playing with Resilience4j - Retry and Fallback Methods
 -  Step 28 - Playing with Circuit Breaker Features of Resilience4j
 -  Step 29 - Exploring Rate Limiting and BulkHead Features of Resilience4j
+
+## Step 27: Text Lecture
+
+DO NOT SKIP: Update to Step 28 and Step 29 - Change in Configuration
+Use maxAttempts instead of maxRetryAttempts
+
+resilience4j.retry.instances.sample-api.maxAttempts=5 #NEW
+#resilience4j.retry.instances.sample-api.maxRetryAttempts=5 #OLD
 
 
 #### /currency-exchange-service/pom.xml Modified

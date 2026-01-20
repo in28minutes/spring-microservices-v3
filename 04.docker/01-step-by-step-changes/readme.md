@@ -137,42 +137,6 @@ docker run -p 9411:9411 openzipkin/zipkin:2.23
    <artifactId>micrometer-tracing-bridge-brave</artifactId>
 </dependency>
 
-<!-- testing dependencies -->
-<dependency>
-   <groupId>org.springframework.boot</groupId>
-   <artifactId>spring-boot-micrometer-tracing-test</artifactId>
-   <scope>test</scope>
-</dependency>
-<dependency>
-   <groupId>org.springframework.boot</groupId>
-   <artifactId>spring-boot-starter-actuator-test</artifactId>
-   <scope>test</scope>
-</dependency>
-<dependency>
-   <groupId>org.springframework.boot</groupId>
-   <artifactId>spring-boot-starter-zipkin-test</artifactId>
-   <scope>test</scope>
-</dependency>
-
-<!-- Spring Boot 2 Tracing -->
-
-<!-- Sleuth (Tracing Configuration) > Brave (Tracer library) > Zipkin -->
-
-<!-- 
-<dependency>
-	<groupId>org.springframework.cloud</groupId>
-	<artifactId>spring-cloud-starter-sleuth</artifactId>
-</dependency>
-<dependency>
-	<groupId>org.springframework.cloud</groupId>
-    <artifactId>spring-cloud-sleuth-brave</artifactId>
-</dependency>
-<dependency>
-	<groupId>org.springframework.cloud</groupId>
-	<artifactId>spring-cloud-sleuth-zipkin</artifactId>
-</dependency>
-
--->
 
 <!-- Spring Boot 3+ Tracing -->
 
@@ -211,6 +175,27 @@ docker run -p 9411:9411 openzipkin/zipkin:2.23
 <!--    <groupId>io.opentelemetry</groupId>-->
 <!--    <artifactId>opentelemetry-exporter-zipkin</artifactId>-->
 <!--</dependency>-->
+
+
+<!-- Spring Boot 2 Tracing -->
+
+<!-- Sleuth (Tracing Configuration) > Brave (Tracer library) > Zipkin -->
+
+<!-- 
+<dependency>
+    <groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-starter-sleuth</artifactId>
+</dependency>
+<dependency>
+    <groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-sleuth-brave</artifactId>
+</dependency>
+<dependency>
+    <groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-sleuth-zipkin</artifactId>
+</dependency>
+
+-->
 
 ```
 
