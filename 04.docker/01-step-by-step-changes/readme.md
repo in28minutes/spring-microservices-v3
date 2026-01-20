@@ -202,17 +202,24 @@ docker run -p 9411:9411 openzipkin/zipkin:2.23
 ### application.properties
 
 
+Spring Boot 4+: Use all these properties
+
 ```properties
-#spring.sleuth.sampler.probability=1.0
 management.tracing.sampling.probability=1.0
 logging.pattern.level=%5p [${spring.application.name:},%X{traceId:-},%X{spanId:-}]
 
-# IF YOU WANT TO RUN ZIPKIN ON DIFFERENT URL
-##spring.zipkin.baseUrl=http://localhost:9411/
 management.tracing.export.zipkin.endpoint=http://localhost:9411/api/v2/spans
 management.tracing.export.zipkin.enabled=true
 ```
 
+OLD STUFF
+```
+#spring.sleuth.sampler.probability=1.0
+
+# IF YOU WANT TO RUN ZIPKIN ON DIFFERENT URL
+##spring.zipkin.baseUrl=http://localhost:9411/
+
+```
 ## Step 13
 
 - Step 13 - Connecting Currency Conversion Microservice and API Gateway with Zipkin
