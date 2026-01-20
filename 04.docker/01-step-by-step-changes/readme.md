@@ -117,9 +117,10 @@ docker run -p 9411:9411 openzipkin/zipkin:2.23
 
 ### pom.xml
 
+
 ```xml
 
-<!-- In Spring Boot 4 -->
+<!-- Spring Boot 4 - Use These Four Dependencies -->
 <dependency>
 	<groupId>org.springframework.boot</groupId>
 	<artifactId>spring-boot-starter-actuator</artifactId>
@@ -136,8 +137,11 @@ docker run -p 9411:9411 openzipkin/zipkin:2.23
    <groupId>io.micrometer</groupId>
    <artifactId>micrometer-tracing-bridge-brave</artifactId>
 </dependency>
+```
 
 
+OLDER VERSIONS GO HERE!
+```
 <!-- Spring Boot 3+ Tracing -->
 
 <!-- Micrometer > Brave/OpenTelemetry > Zipkin -->
@@ -202,7 +206,7 @@ docker run -p 9411:9411 openzipkin/zipkin:2.23
 ### application.properties
 
 
-Spring Boot 4+: Use all these properties
+Spring Boot 4+: Use all these four properties
 
 ```properties
 management.tracing.sampling.probability=1.0
@@ -212,7 +216,7 @@ management.tracing.export.zipkin.endpoint=http://localhost:9411/api/v2/spans
 management.tracing.export.zipkin.enabled=true
 ```
 
-OLD STUFF
+OLDER VERSIONS GO HERE!
 ```
 #spring.sleuth.sampler.probability=1.0
 
