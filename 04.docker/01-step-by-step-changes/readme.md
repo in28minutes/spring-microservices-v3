@@ -117,52 +117,54 @@ docker run -p 9411:9411 openzipkin/zipkin:2.23
 
 ### pom.xml
 
-#### High Level Flow
-
-- spring-boot-starter-actuator (The Trigger): The process begins when an incoming request hits your application. Actuator provides the foundational Micrometer Observation API, which detects that an "event" is occurring.
-- micrometer-tracing-bridge-brave (The Bridge): The Observation API from Actuator sends the request data to this bridge. 
-- spring-boot-micrometer-tracing-brave (The Engine): This dependency uses the Brave library to perform the actual tracing work. It creates a Trace ID and Span ID, records the start/end timestamps, and handles "context propagation"—meaning it attaches these IDs to any outgoing requests so the trace can continue in the next microservice.
-- spring-boot-starter-zipkin (The Exporter): Once the request (span) is complete, this starter takes the finished trace data and sends it asynchronously to your Zipkin server (typically at http://localhost:9411) for storage and visualization. 
 
 ```xml
 
 <!-- Spring Boot 4 - Use These Four Dependencies -->
 
-<!-- This is the core "observability" engine. 
-    It provides the ObservationRegistry required to collect metrics and traces. -->
 <dependency>
 	<groupId>org.springframework.boot</groupId>
 	<artifactId>spring-boot-starter-actuator</artifactId>
 </dependency>
 
-<!--This acts as a "bridge" or facade. 
-    Micrometer Tracing is a generic API
-    while Brave is the actual engine 
-    that handles the lifecycle of a trace-->
 <dependency>
 	<groupId>org.springframework.boot</groupId>
 	<artifactId>spring-boot-micrometer-tracing-brave</artifactId>
 </dependency>
 
-<!--This provides the Auto-Configuration specific to Spring Boot. 
-It tells Spring how to set up the Brave tracer and 
-wire it into common components like RestTemplate, WebClient-->
 <dependency>
    <groupId>io.micrometer</groupId>
    <artifactId>micrometer-tracing-bridge-brave</artifactId>
 </dependency>
 
-<!--This is the Reporter. 
-Once Brave collects a trace, this dependency sends that data to a Zipkin server 
-(typically at http://localhost:9411) for visualization. -->
 <dependency>
    <groupId>org.springframework.boot</groupId>
    <artifactId>spring-boot-starter-zipkin</artifactId>
 </dependency>
 ```
 
+### application.properties
 
-OLDER VERSIONS GO HERE!
+
+Spring Boot 4+: Use all these four properties
+
+```properties
+management.tracing.sampling.probability=1.0
+logging.pattern.level=%5p [${spring.application.name:},%X{traceId:-},%X{spanId:-}]
+
+management.tracing.export.zipkin.endpoint=http://localhost:9411/api/v2/spans
+management.tracing.export.zipkin.enabled=true
+```
+
+#### High Level Flow
+
+- **spring-boot-starter-actuator**: This is the core "observability" engine. Actuator detects that an "event" is occurring.
+- **micrometer-tracing-bridge-brave**: This acts as a "bridge" or facade. Micrometer Tracing is a generic API. Brave provides implementation.
+- **spring-boot-micrometer-tracing-brave**: This dependency uses the Brave library to perform the actual tracing work. It creates a Trace ID and Span ID, records the start/end timestamps.
+- **spring-boot-starter-zipkin**: Once the request (span) is complete, this starter takes the finished trace data and sends it asynchronously to your Zipkin server (typically at http://localhost:9411) for storage and visualization. 
+
+
+#### OLDER VERSIONS GO HERE!
 ```
 <!-- Spring Boot 3+ Tracing -->
 
@@ -225,20 +227,8 @@ OLDER VERSIONS GO HERE!
 
 ```
 
-### application.properties
 
-
-Spring Boot 4+: Use all these four properties
-
-```properties
-management.tracing.sampling.probability=1.0
-logging.pattern.level=%5p [${spring.application.name:},%X{traceId:-},%X{spanId:-}]
-
-management.tracing.export.zipkin.endpoint=http://localhost:9411/api/v2/spans
-management.tracing.export.zipkin.enabled=true
-```
-
-OLDER VERSIONS GO HERE!
+application.properties
 ```
 #spring.sleuth.sampler.probability=1.0
 
