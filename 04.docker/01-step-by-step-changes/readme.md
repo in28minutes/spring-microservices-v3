@@ -117,6 +117,12 @@ docker run -p 9411:9411 openzipkin/zipkin:2.23
 
 ### pom.xml
 
+#### High Level Flow
+
+- spring-boot-starter-actuator (The Trigger): The process begins when an incoming request hits your application. Actuator provides the foundational Micrometer Observation API, which detects that an "event" is occurring.
+- micrometer-tracing-bridge-brave (The Bridge): The Observation API from Actuator sends the request data to this bridge. 
+- spring-boot-micrometer-tracing-brave (The Engine): This dependency uses the Brave library to perform the actual tracing work. It creates a Trace ID and Span ID, records the start/end timestamps, and handles "context propagation"—meaning it attaches these IDs to any outgoing requests so the trace can continue in the next microservice.
+- spring-boot-starter-zipkin (The Exporter): Once the request (span) is complete, this starter takes the finished trace data and sends it asynchronously to your Zipkin server (typically at http://localhost:9411) for storage and visualization. 
 
 ```xml
 
