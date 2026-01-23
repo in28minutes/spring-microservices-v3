@@ -129,19 +129,26 @@ docker run -p 9411:9411 openzipkin/zipkin:2.23
 	<artifactId>spring-boot-starter-actuator</artifactId>
 </dependency>
 
-<!--This acts as a "bridge" or facade. Micrometer Tracing is a generic API, while Brave is the actual engine that handles the lifecycle of a trace-->
+<!--This acts as a "bridge" or facade. 
+    Micrometer Tracing is a generic API
+    while Brave is the actual engine 
+    that handles the lifecycle of a trace-->
 <dependency>
 	<groupId>org.springframework.boot</groupId>
 	<artifactId>spring-boot-micrometer-tracing-brave</artifactId>
 </dependency>
 
-<!--This provides the Auto-Configuration specific to Spring Boot. It tells Spring how to set up the Brave tracer and wire it into common components like RestTemplate, WebClient, or your logging system.-->
+<!--This provides the Auto-Configuration specific to Spring Boot. 
+It tells Spring how to set up the Brave tracer and 
+wire it into common components like RestTemplate, WebClient-->
 <dependency>
    <groupId>io.micrometer</groupId>
    <artifactId>micrometer-tracing-bridge-brave</artifactId>
 </dependency>
 
-<!--This is the Reporter. Once Brave collects a trace, this dependency sends that data to a Zipkin server (typically at http://localhost:9411) for visualization. -->
+<!--This is the Reporter. 
+Once Brave collects a trace, this dependency sends that data to a Zipkin server 
+(typically at http://localhost:9411) for visualization. -->
 <dependency>
    <groupId>org.springframework.boot</groupId>
    <artifactId>spring-boot-starter-zipkin</artifactId>
