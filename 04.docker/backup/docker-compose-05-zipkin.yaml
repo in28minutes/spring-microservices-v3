@@ -1,10 +1,8 @@
-version: '3.7'
-
 services:
 
   currency-exchange:
     image: in28min/mmv3-currency-exchange-service:0.0.1-SNAPSHOT
-    mem_limit: 700m
+    mem_limit: 1G
     ports:
       - "8000:8000"
     networks:
@@ -13,7 +11,7 @@ services:
       - naming-server
     environment:
       EUREKA.CLIENT.SERVICEURL.DEFAULTZONE: http://naming-server:8761/eureka
-      MANAGEMENT.ZIPKIN.TRACING.ENDPOINT: http://zipkin-server:9411/api/v2/spans
+      MANAGEMENT.TRACING.EXPORT.ZIPKIN.ENDPOINT: http://zipkin-server:9411/api/v2/spans
 
   currency-conversion:
     image: in28min/mmv3-currency-conversion-service:0.0.1-SNAPSHOT
@@ -26,10 +24,10 @@ services:
       - naming-server
     environment:
       EUREKA.CLIENT.SERVICEURL.DEFAULTZONE: http://naming-server:8761/eureka
-      MANAGEMENT.ZIPKIN.TRACING.ENDPOINT: http://zipkin-server:9411/api/v2/spans
+      MANAGEMENT.TRACING.EXPORT.ZIPKIN.ENDPOINT: http://zipkin-server:9411/api/v2/spans
 
   api-gateway:
-    image: in28min/mmv3-api-gateway:0.0.1-SNAPSHOT
+    image: in28min/mmv3-api-gateway:0.0.2-SNAPSHOT
     mem_limit: 700m
     ports:
       - "8765:8765"
@@ -39,7 +37,7 @@ services:
       - naming-server
     environment:
       EUREKA.CLIENT.SERVICEURL.DEFAULTZONE: http://naming-server:8761/eureka
-      MANAGEMENT.ZIPKIN.TRACING.ENDPOINT: http://zipkin-server:9411/api/v2/spans
+      MANAGEMENT.TRACING.EXPORT.ZIPKIN.ENDPOINT: http://zipkin-server:9411/api/v2/spans
 
   naming-server:
     image: in28min/mmv3-naming-server:0.0.1-SNAPSHOT
@@ -49,7 +47,7 @@ services:
     networks:
       - currency-network
 
-#docker run -p 9411:9411 openzipkin/zipkin:2.23
+  #docker run -p 9411:9411 openzipkin/zipkin:2.23
 
   zipkin-server:
     image: openzipkin/zipkin:2.23
