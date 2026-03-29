@@ -145,7 +145,6 @@ docker run -p 9411:9411 openzipkin/zipkin:2.23
 
 ### application.properties
 
-
 Spring Boot 4+: Use all these four properties
 
 ```properties
@@ -163,6 +162,12 @@ management.tracing.export.zipkin.enabled=true
 - **spring-boot-micrometer-tracing-brave**: This dependency uses the Brave library to perform the actual tracing work. It creates a Trace ID and Span ID, records the start/end timestamps.
 - **spring-boot-starter-zipkin**: Once the request (span) is complete, this starter takes the finished trace data and sends it asynchronously to your Zipkin server (typically at http://localhost:9411) for storage and visualization. 
 
+[!Important]
+- we will use the OpenTelemetry Observability Framework along with the OTLP Protocol to send data to the OpenTelemetry Collector. The Collector gathers Logs, Traces, and Metrics and can then export them to any observability backend, such as Zipkin/Tempo (Traces), Prometheus (Metrics), and Loki (Logs).
+
+[Please go through this guide](OpenTelemetrySetupGuide.md)
+
+ 
 
 #### OLDER VERSIONS GO HERE!
 ```
@@ -227,14 +232,13 @@ management.tracing.export.zipkin.enabled=true
 
 ```
 
-
 application.properties
 ```
 #spring.sleuth.sampler.probability=1.0
 
 # IF YOU WANT TO RUN ZIPKIN ON DIFFERENT URL
 ##spring.zipkin.baseUrl=http://localhost:9411/
-
+management.zipkin.tracing.endpoint=http://localhost:9411/api/v2/spans 
 ```
 ## Step 13
 

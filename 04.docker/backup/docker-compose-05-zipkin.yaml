@@ -1,10 +1,8 @@
-version: '3.7'
-
 services:
 
   currency-exchange:
     image: in28min/mmv3-currency-exchange-service:0.0.1-SNAPSHOT
-    mem_limit: 700m
+    mem_limit: 1G
     ports:
       - "8000:8000"
     networks:
@@ -13,7 +11,7 @@ services:
       - naming-server
     environment:
       EUREKA.CLIENT.SERVICEURL.DEFAULTZONE: http://naming-server:8761/eureka
-      MANAGEMENT.ZIPKIN.TRACING.ENDPOINT: http://zipkin-server:9411/api/v2/spans
+      MANAGEMENT.OPENTELEMETRY.TRACING.EXPORT.OTLP.ENDPOINT: http://otel-collector:4318/v1/traces
 
   currency-conversion:
     image: in28min/mmv3-currency-conversion-service:0.0.1-SNAPSHOT
@@ -26,7 +24,7 @@ services:
       - naming-server
     environment:
       EUREKA.CLIENT.SERVICEURL.DEFAULTZONE: http://naming-server:8761/eureka
-      MANAGEMENT.ZIPKIN.TRACING.ENDPOINT: http://zipkin-server:9411/api/v2/spans
+      MANAGEMENT.OPENTELEMETRY.TRACING.EXPORT.OTLP.ENDPOINT: http://otel-collector:4318/v1/traces
 
   api-gateway:
     image: in28min/mmv3-api-gateway:0.0.1-SNAPSHOT
@@ -39,7 +37,7 @@ services:
       - naming-server
     environment:
       EUREKA.CLIENT.SERVICEURL.DEFAULTZONE: http://naming-server:8761/eureka
-      MANAGEMENT.ZIPKIN.TRACING.ENDPOINT: http://zipkin-server:9411/api/v2/spans
+      MANAGEMENT.OPENTELEMETRY.TRACING.EXPORT.OTLP.ENDPOINT: http://otel-collector:4318/v1/traces
 
   naming-server:
     image: in28min/mmv3-naming-server:0.0.1-SNAPSHOT
@@ -49,7 +47,7 @@ services:
     networks:
       - currency-network
 
-#docker run -p 9411:9411 openzipkin/zipkin:2.23
+  #docker run -p 9411:9411 openzipkin/zipkin:2.23
 
   zipkin-server:
     image: openzipkin/zipkin:2.23
@@ -59,6 +57,19 @@ services:
     networks:
       - currency-network
     restart: always #Restart if there is a problem starting up
+
+  otel-collector:
+    image: otel/opentelemetry-collector-contrib:latest
+    command: [ "--config=/etc/otelcol/config.yaml" ]
+    volumes:
+      - ./otel-collector-config.yaml:/etc/otelcol/config.yaml
+    ports:
+      - "4317:4317"
+      - "4318:4318"
+    networks:
+      - currency-network
+    depends_on:
+      - zipkin-server
 
 networks:
   currency-network:
