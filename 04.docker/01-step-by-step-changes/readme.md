@@ -163,8 +163,7 @@ management.tracing.export.zipkin.enabled=true
 - **spring-boot-starter-zipkin**: Once the request (span) is complete, this starter takes the finished trace data and sends it asynchronously to your Zipkin server (typically at http://localhost:9411) for storage and visualization. 
 
 [!Important]
-- If you would like to send logs, traces, and metrics to a Grafana visualization tool, sending them directly from the application is not possible. 
-- Hence, we will use the OpenTelemetry Observability Framework along with the OTLP Protocol to send data to the OpenTelemetry Collector. The Collector gathers Logs, Traces, and Metrics and can then export them to any observability backend, such as Zipkin/Tempo (Traces), Prometheus (Metrics), and Loki (Logs).
+- we will use the OpenTelemetry Observability Framework along with the OTLP Protocol to send data to the OpenTelemetry Collector. The Collector gathers Logs, Traces, and Metrics and can then export them to any observability backend, such as Zipkin/Tempo (Traces), Prometheus (Metrics), and Loki (Logs).
 
 [Please go through this guide](OpenTelemetrySetupGuide.md)
 

@@ -1,6 +1,6 @@
-# Observability Setup: OpenTelemetry, Prometheus, Grafana & Loki
+# Observability Setup: OpenTelemetry with Zipkin
 
-This document describes the changes made to integrate distributed tracing, metrics, and log aggregation into the microservices architecture across **api-gateway**, **currency-exchange**, and **currency-conversion** projects.
+This document describes the changes made to integrate distributed tracing into the microservices architecture across **api-gateway**, **currency-exchange**, and **currency-conversion** projects.
 
 ---
 
@@ -12,9 +12,6 @@ The following observability stack was added:
 |---|----------------------------------------------------------------------------|
 | **OpenTelemetry** | Observability Framework, distributed tracing and telemetry instrumentation |
 | **Zipkin** | Trace visualization                                                        |
-| **Prometheus** | Metrics collection and storage                                             |
-| **Grafana** | Metrics and log dashboards                                                 |
-| **Grafana Loki** | Log aggregation                                                            |
 | **OTel Collector** | Telemetry pipeline (receives, processes, exports)                          |
 
 ---
@@ -37,18 +34,11 @@ Added the following dependencies to `pom.xml` in all three services: **api-gatew
     <version>2.25.0-alpha</version>
 </dependency>
 
-<!-- Prometheus metrics registry -->
-<dependency>
-    <groupId>io.micrometer</groupId>
-    <artifactId>micrometer-registry-prometheus</artifactId>
-    <scope>runtime</scope>
-</dependency>
 ```
 
 **Notes:**
 - `spring-boot-starter-opentelemetry` enables auto-instrumentation for traces and metrics.
 - `opentelemetry-logback-appender-1.0` bridges Logback logs into the OTel pipeline.
-- `micrometer-registry-prometheus` exposes a `/actuator/prometheus` scrape endpoint for Prometheus.
 
 ---
 
@@ -75,9 +65,7 @@ management.endpoints.web.exposure.include=*
 management.endpoint.health.show-details=always
 
 management.tracing.export.enabled=true
-management.opentelemetry.logging.export.otlp.endpoint=http://localhost:4318/v1/logs
 management.opentelemetry.tracing.export.otlp.endpoint=http://localhost:4318/v1/traces
-management.otlp.metrics.export.url=http://localhost:4318/v1/metrics
 ```
 
 ## Step 3 — `InstallOpenTelemetryAppender.java`
@@ -159,46 +147,6 @@ This Logback configuration wires up the OpenTelemetry appender so that all appli
 
 Extended the Docker Compose file with the following new services:
 
-### Prometheus
-```yaml
-prometheus:
-  image: prom/prometheus:main-distroless
-  volumes:
-    - ./prometheus.yml:/etc/prometheus/prometheus.yml
-  ports:
-    - "9090:9090"
-  networks:
-    - currency-network
-```
-Scrapes metrics from the microservices' `/actuator/prometheus` endpoints.
-Access UI at: `http://localhost:9090`
-
-### Grafana
-```yaml
-grafana:
-  image: grafana/grafana
-  ports:
-    - "3000:3000"
-  networks:
-    - currency-network
-```
-Provides dashboards for both Prometheus metrics and Loki logs.
-Access UI at: `http://localhost:3000` (default credentials: `admin` / `admin`)
-
-### Grafana Loki
-```yaml
-loki:
-  image: grafana/loki:latest
-  command: -config.file=/etc/loki-config.yaml
-  volumes:
-    - ./loki-config.yaml:/etc/loki-config.yaml
-  ports:
-    - "3100:3100"
-  networks:
-    - currency-network
-```
-Log aggregation backend. Receives logs forwarded from the OTel Collector.
-
 ### OpenTelemetry Collector
 ```yaml
 otel-collector:
@@ -209,14 +157,10 @@ otel-collector:
   ports:
     - "4317:4317"   # gRPC receiver
     - "4318:4318"   # HTTP receiver
-    - "9464:9464"   # Prometheus exporter
   networks:
     - currency-network
   depends_on:
     - zipkin-server
-    - prometheus
-    - grafana
-    - loki
 ```
 Central telemetry pipeline. Receives traces, metrics, and logs from all services and routes them to Zipkin, Prometheus, and Loki respectively.
 
@@ -225,9 +169,6 @@ Central telemetry pipeline. Receives traces, metrics, and logs from all services
 ## Step 6 — Configuration Files
 
 The following configuration files were added to the `backup/` directory alongside the Docker Compose file:
-
-### `loki-config.yaml`
-Configures Grafana Loki — defines ingester, storage backend, schema, and compactor settings for log storage and querying.
 
 ### `otel-collector-config.yaml`
 Configures the OpenTelemetry Collector pipeline:
@@ -269,8 +210,6 @@ Microservices (api-gateway, currency-exchange, currency-conversion)
         ▼
 OTel Collector
    ├──► Zipkin         (Traces)     → http://localhost:9411
-   ├──► Prometheus     (Metrics)    → http://localhost:9090
-   └──► Loki           (Logs)       → http://localhost:3100
                                            │
                                            ▼
                                        Grafana           → http://localhost:3000
